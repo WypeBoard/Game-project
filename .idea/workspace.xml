@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/GameFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/GamePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/InputHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/utils/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/WindowManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/GameState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/GameStateManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/MainMenuState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/GameFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/GamePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/InputHandler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +27,23 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GameProject" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,6 +74,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.code.engine.state" />
       <recent name="org.code" />
     </key>
   </component>
@@ -99,5 +108,16 @@
       <updated>1745262371084</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
