@@ -104,15 +104,17 @@ public class GameLoop {
      * @param deltaTime time since last frame
      */
     private void update(double deltaTime) {
-        // Update input state
-        inputManager.update();
-        mouseManager.update();
-
         // Check for global commands (like quitting)
         handleGlobalInput();
 
         // Update current game state
         gameStateManager.update(deltaTime);
+        
+        // Update input state.
+        // These should be kept last, as they clear the input
+        inputManager.update();
+        mouseManager.update();
+
     }
 
     /**

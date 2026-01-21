@@ -1,6 +1,7 @@
 package org.code.engine.ui;
 
 import org.code.engine.input.MouseManager;
+import org.code.utils.Logger;
 import org.lwjgl.opengl.GL11;
 
 public final class UIButton implements UIElement {
@@ -30,6 +31,7 @@ public final class UIButton implements UIElement {
         this.bounds = new UIBounds(x, y, width, height);
         this.label = label;
         this.onClick = onClick;
+        Logger.debug(getClass(), "Created button '" + label + "' at (" + x + ", " + y + ") size (" + width + "x" + height + ")");
     }
 
     @Override
@@ -40,8 +42,16 @@ public final class UIButton implements UIElement {
         }
 
         MouseManager mouseManager = MouseManager.getInstance();
-        bounds.containsMouse();
+        hovered = bounds.containsMouse();
+
+        Logger.debugOnChange(getClass(), "button_" + label + "_hovered", hovered);
+        // Log mouse position when hovering this button
+        if (hovered) {
+            Logger.debugThrottled(getClass(), "button_" + label + "_mouse_pos",
+                    "Mouse over '" + label + "': (" + mouseManager.getMouseX() + ", " + mouseManager.getMouseY() + ")");
+        }
         if (hovered && mouseManager.isLeftButtonJustPressed() && onClick != null) {
+            Logger.debug(getClass(), "Button '" + label + "' CLICKED!");
             onClick.run();
         }
     }

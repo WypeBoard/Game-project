@@ -1,5 +1,6 @@
 package org.code.engine.input;
 
+import org.code.utils.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
@@ -48,6 +49,7 @@ public class MouseManager {
     }
 
     public void init(long windowHandle) {
+        Logger.debug(getClass(), "Initializing mouse callbacks");
         cursorPosCallback = new GLFWCursorPosCallback() {
             @Override
             public void invoke(long window, double xPos, double yPos) {
@@ -67,6 +69,8 @@ public class MouseManager {
                 justPressedButtons.put(button, !wasPressed && isPressed);
                 justReleasedButtons.put(button, wasPressed && !isPressed);
 
+                Logger.debug(getClass(), button + " BUTTON PRESSED at (" + mouseX + ", " + mouseY + ")");
+
             }
         };
         GLFW.glfwSetMouseButtonCallback(windowHandle, mouseButtonCallback);
@@ -79,6 +83,8 @@ public class MouseManager {
             }
         };
         GLFW.glfwSetScrollCallback(windowHandle, scrollCallback);
+
+        Logger.debug(getClass(), "Mouse callbacks initialized successfully");
     }
 
     public void update() {
@@ -90,6 +96,10 @@ public class MouseManager {
         lastMouseX = mouseX;
         lastMouseY = mouseY;
 
+        if (!justPressedButtons.isEmpty()) {
+            Logger.debugThrottled(getClass(),"mouse_just_pressed_clear",
+                    "Clearing justPressed buttons: " + justPressedButtons.keySet());
+        }
         // Clear single-frame events
         justPressedButtons.clear();
         justReleasedButtons.clear();
@@ -122,7 +132,11 @@ public class MouseManager {
     }
 
     public boolean isButtonJustPressed(int button) {
-        return justPressedButtons.getOrDefault(button, false);
+        Boolean result = justPressedButtons.getOrDefault(button, false);
+        if (result && button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+            Logger.debug(getClass(), "isButtonJustPressed(LEFT) returning TRUE");
+        }
+        return result;
     }
 
     public boolean isButtonJustReleased(int button) {
