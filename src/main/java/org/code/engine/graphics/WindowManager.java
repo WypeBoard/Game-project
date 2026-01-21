@@ -1,6 +1,7 @@
 package org.code.engine.graphics;
 
 import org.code.engine.input.InputManager;
+import org.code.engine.input.MouseManager;
 import org.code.utils.Constants;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -73,6 +74,9 @@ public class WindowManager {
         // Keyboard callback
         GLFW.glfwSetKeyCallback(windowHandle, InputManager.getInstance());
 
+        // Mouse callbacks
+        MouseManager.getInstance().init(windowHandle);
+
         // Resize callback
         GLFW.glfwSetFramebufferSizeCallback(windowHandle, (window, w, h) -> {
             this.width = w;
@@ -98,6 +102,7 @@ public class WindowManager {
 
     public void cleanup() {
         InputManager.getInstance().cleanup();
+        MouseManager.getInstance().cleanup();
         GLFW.glfwDestroyWindow(windowHandle);
         GLFW.glfwTerminate();
         GLFWErrorCallback callback = GLFW.glfwSetErrorCallback(null);

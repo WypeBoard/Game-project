@@ -2,7 +2,6 @@ package org.code.engine.state;
 
 public abstract class GameState {
 
-
     protected boolean initialized = false;
 
     public abstract void init();
@@ -22,7 +21,7 @@ public abstract class GameState {
      * Called when state becomes inactive
      */
     public void onExit() {
-
+        // Override if needed
     }
 
 }

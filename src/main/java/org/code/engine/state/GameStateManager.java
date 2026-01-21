@@ -1,7 +1,5 @@
 package org.code.engine.state;
 
-import java.util.Optional;
-
 public class GameStateManager {
 
     private static GameStateManager instance;

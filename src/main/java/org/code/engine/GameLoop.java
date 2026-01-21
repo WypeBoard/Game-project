@@ -2,6 +2,7 @@ package org.code.engine;
 
 import org.code.engine.graphics.WindowManager;
 import org.code.engine.input.InputManager;
+import org.code.engine.input.MouseManager;
 import org.code.engine.state.GameStateManager;
 import org.code.engine.state.MainMenuState;
 import org.code.utils.Constants;
@@ -16,6 +17,7 @@ public class GameLoop {
     private static GameLoop instance;
     private final WindowManager windowManager;
     private final InputManager inputManager;
+    private final MouseManager mouseManager;
     private final GameStateManager gameStateManager;
     private boolean running = false;
 
@@ -27,6 +29,7 @@ public class GameLoop {
         // Private constructor for singleton
         windowManager = WindowManager.getInstance();
         inputManager = InputManager.getInstance();
+        mouseManager = MouseManager.getInstance();
         gameStateManager = GameStateManager.getInstance();
         // Empty
     }
@@ -103,6 +106,7 @@ public class GameLoop {
     private void update(double deltaTime) {
         // Update input state
         inputManager.update();
+        mouseManager.update();
 
         // Check for global commands (like quitting)
         handleGlobalInput();
