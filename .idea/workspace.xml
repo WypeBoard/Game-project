@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/utils/Logger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TextRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/ViewportManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIAnchor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/input/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/input/MouseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/WindowManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/MainMenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UILabel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,18 +65,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.GameProject [:org.code.Main.main()].executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.GameProject [:org.code.Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.code.engine.state" />

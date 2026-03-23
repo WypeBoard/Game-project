@@ -82,13 +82,34 @@ public class WindowManager {
             this.width = w;
             this.height = h;
             GL11.glViewport(0, 0, w, h);
+
+            // Update ViewportManager so UI can respond to size changes
+            ViewportManager.getInstance().updateViewport(w, h);
+
+            // Update projection matrix for new viewport size
+            updateProjection();
         });
 
+        // Get initial window size and update viewport manager
+        int[] w = new int[1];
+        int[] h = new int[1];
+        GLFW.glfwGetFramebufferSize(windowHandle, w, h);
+        this.width = w[0];
+        this.height = h[0];
+        ViewportManager.getInstance().updateViewport(this.width, this.height);
     }
 
     private void showWindow() {
         // Make the window visable
         GLFW.glfwShowWindow(this.windowHandle);
+    }
+
+    private void updateProjection() {
+        GL11.glMatrixMode(GL11.GL_PROJECTION);
+        GL11.glLoadIdentity();
+        GL11.glOrtho(0, width, height, 0, -1, 1);
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+        GL11.glLoadIdentity();
     }
 
     public void update() {
@@ -109,5 +130,13 @@ public class WindowManager {
         if (callback != null) {
             callback.free();
         }
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

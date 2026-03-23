@@ -1,12 +1,12 @@
 package org.code.engine.state;
 
 import org.code.engine.GameLoop;
-import org.code.engine.input.InputManager;
-import org.code.engine.input.MouseManager;
+import org.code.engine.graphics.TextRenderer;
+import org.code.engine.graphics.ViewportManager;
+import org.code.engine.ui.UIAnchor;
 import org.code.engine.ui.UIButton;
 import org.code.engine.ui.UIManager;
 import org.code.engine.ui.UIPanel;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 public class MainMenuState extends GameState {
@@ -18,9 +18,10 @@ public class MainMenuState extends GameState {
     public void init() {
         System.out.println("Main menu initialized");
 
+        ViewportManager viewport = ViewportManager.getInstance();
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0, 800, 600, 0, -1, 1);
+        GL11.glOrtho(0, viewport.getWidth(), viewport.getHeight(), 0, -1, 1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
 
@@ -31,23 +32,45 @@ public class MainMenuState extends GameState {
     }
 
     private void setupUI() {
-        menuPanel = new UIPanel(250, 150, 300, 300);
-        float buttonY = 200;
+        ViewportManager viewport = ViewportManager.getInstance();
+        float panelWidth = 300;
+        float panelHeight = 300;
+        float panelX = viewport.getCenterX() - panelWidth / 2;
+        float panelY = viewport.getCenterY() - panelHeight / 2;
+
+        menuPanel = new UIPanel(panelX, panelY, panelWidth, panelHeight);
+        float buttonWidth = 200;
+        float buttonHeight = 40;
         float buttonSpacing = 60;
+        float startY = -buttonSpacing; // Offset from center
 
-        UIButton playButton = new UIButton(300, buttonY, 200, 40, "Play", () -> {
-            System.out.println("Starting the game...");
-            GameStateManager.getInstance().setState(new PlayState());
-        });
+        UIButton playButton = new UIButton(
+                UIAnchor.center(-buttonWidth / 2, startY),
+                buttonWidth, buttonHeight,
+                "Play",
+                () -> {
+                    System.out.println("Starting the game...");
+                    GameStateManager.getInstance().setState(new PlayState());
+                }
+        );
+        UIButton settingsButton = new UIButton(
+                UIAnchor.center(-buttonWidth / 2, startY + buttonSpacing),
+                buttonWidth, buttonHeight,
+                "Settings",
+                () -> {
+                    System.out.println("Settings.. Out of order");
+                }
+        );
 
-        UIButton settingsButton = new UIButton(300, buttonY + buttonSpacing, 200, 40, "Settings", () -> {
-            System.out.println("Settings.. Out of order");
-        });
-
-        UIButton exitButton = new UIButton(300, buttonY + buttonSpacing * 2, 200, 40, "Exit", () -> {
-            System.out.println("Exiting game");
-            GameLoop.getInstance().stopGameLoop();
-        });
+        UIButton exitButton = new UIButton(
+                UIAnchor.center(-buttonWidth / 2, startY + buttonSpacing * 2),
+                buttonWidth, buttonHeight,
+                "Exit",
+                () -> {
+                    System.out.println("Exiting game");
+                    GameLoop.getInstance().stopGameLoop();
+                }
+        );
 
         menuPanel.addChild(playButton);
         menuPanel.addChild(settingsButton);
@@ -64,13 +87,26 @@ public class MainMenuState extends GameState {
     @Override
     public void render() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-        GL11.glColor3f(1.0f, 1.0f, 1.0f); // White
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2f(350, 100);
-        GL11.glVertex2f(450, 100);
-        GL11.glVertex2f(450, 140);
-        GL11.glVertex2f(350, 140);
-        GL11.glEnd();
+
+        ViewportManager viewport = ViewportManager.getInstance();
+        TextRenderer textRenderer = TextRenderer.getInstance();
+
+        textRenderer.drawTextCentered(
+                "TRANSPORT TYCOON",
+                viewport.getCenterX(),
+                viewport.getCenterY() - 150,
+                2.5f,
+                1.0f, 1.0f, 0.0f
+        );
+
+        textRenderer.drawTextCentered(
+                "Prototype",
+                viewport.getCenterX(),
+                viewport.getCenterY() - 110,
+                1.2f,
+                0.8f, 0.8f, 0.8f
+        );
+
 
         uiManager.render();
     }

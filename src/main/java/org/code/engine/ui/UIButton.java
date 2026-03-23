@@ -1,14 +1,20 @@
 package org.code.engine.ui;
 
+import org.code.engine.graphics.TextRenderer;
 import org.code.engine.input.MouseManager;
 import org.code.utils.Logger;
 import org.lwjgl.opengl.GL11;
+
+import java.util.Optional;
 
 public final class UIButton implements UIElement {
 
     private final UIBounds bounds;
     private final String label;
     private final Runnable onClick;
+
+    // Optional anchor for responsive positioning
+    private Optional<UIAnchor> anchor = Optional.empty();
 
     private boolean visible = true;
     private boolean enabled = true;
@@ -27,6 +33,11 @@ public final class UIButton implements UIElement {
     private float hoverG = 0.8f;
     private float hoverB = 0.2f;
 
+    private float textScale = 1.0f;
+    private float textR = 1.0f;
+    private float textG = 1.0f;
+    private float textB = 1.0f;
+
     public UIButton(float x, float y, float width, float height, String label, Runnable onClick) {
         this.bounds = new UIBounds(x, y, width, height);
         this.label = label;
@@ -34,8 +45,19 @@ public final class UIButton implements UIElement {
         Logger.debug(getClass(), "Created button '" + label + "' at (" + x + ", " + y + ") size (" + width + "x" + height + ")");
     }
 
+    public UIButton(UIAnchor anchor, float width, float height, String label, Runnable onClick) {
+        this.anchor = Optional.of(anchor);
+        this.bounds = new UIBounds(0, 0, width, height);
+        this.label = label;
+        this.onClick = onClick;
+        updatePosition();
+        Logger.debug(getClass(), "Created anchored button '" + label + "' size (" + width + "x" + height + ")");
+    }
+
     @Override
     public void update(double delta) {
+        anchor.ifPresent(x -> updatePosition());
+
         if (!visible || !enabled) {
             hovered = false;
             return;
@@ -54,6 +76,18 @@ public final class UIButton implements UIElement {
             Logger.debug(getClass(), "Button '" + label + "' CLICKED!");
             onClick.run();
         }
+    }
+
+    /**
+     * Recalculate position based on anchor
+     */
+    private void updatePosition() {
+        anchor.ifPresent(anch -> {
+            float x = anch.calculateX(bounds.getWidth());
+            float y = anch.calculateY(bounds.getHeight());
+            bounds.setX(x);
+            bounds.setY(y);
+        });
     }
 
     @Override
@@ -91,7 +125,12 @@ public final class UIButton implements UIElement {
         GL11.glVertex2f(x, y + height);
         GL11.glEnd();
 
-        // TODO: Render text label (requires font system)
+        if (label != null && !label.isEmpty()) {
+            TextRenderer textRenderer = TextRenderer.getInstance();
+            float centerX = x + width / 2;
+            float centerY = y + (height - textRenderer.getTextHeight(textScale)) / 2;
+            textRenderer.drawTextCentered(label, centerX, centerY, textScale, textR, textG, textB);
+        }
     }
 
     @Override
@@ -126,5 +165,20 @@ public final class UIButton implements UIElement {
         this.hoverR = hoverR;
         this.hoverG = hoverG;
         this.hoverB = hoverB;
+    }
+
+    public void setTextColor(float r, float g, float b) {
+        this.textR = r;
+        this.textG = g;
+        this.textB = b;
+    }
+
+    public void setTextScale(float scale) {
+        this.textScale = scale;
+    }
+
+    public void setAnchor(UIAnchor anchor) {
+        this.anchor = Optional.ofNullable(anchor);
+        updatePosition();
     }
 }
