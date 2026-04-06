@@ -8,6 +8,9 @@ import org.code.engine.graphics.world.GridRenderer;
 import org.code.engine.graphics.world.TileType;
 import org.code.engine.input.InputManager;
 import org.code.engine.input.MouseManager;
+import org.code.game.entity.EntityManager;
+import org.code.game.entity.type.Npc;
+import org.code.game.entity.type.Player;
 import org.code.utils.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -16,14 +19,24 @@ public class PlayState extends GameState {
 
     private static final int WORLD_WIDTH = 64;
     private static final int WORLD_HEIGHT = 64;
-    private static final float TILE_SIZE = 32f;
-
+    private static final int TILE_SIZE = 32;
     // Starting island size (radius from center)
     private static final int ISLAND_RADIUS = 3;
+
+    // How close the player must be to trigger NPC dialogue (world pixels)
+    private static final float INTERACT_RADIUS = 48f;
 
     private Grid grid;
     private GridRenderer gridRenderer;
     private Camera camera;
+    private Player player;
+    private EntityManager entityManager;
+
+    // The one NPC for the MVP quest — held separately so PlayState can check it directly
+    private Npc questNPC;
+
+    // Current dialogue line being shown, null when no dialogue active
+    private String activeDialogue = null;
 
     private static WindowManager windowManager;
     private static InputManager inputManager;
@@ -41,6 +54,7 @@ public class PlayState extends GameState {
         setupProjection();
         buildWorld();
         setupCamera();
+        setupEntities();
     }
 
     private void initManagers() {
@@ -109,41 +123,75 @@ public class PlayState extends GameState {
         // Start camera centred on the island
         float worldCX = (WORLD_WIDTH  / 2f) * TILE_SIZE;
         float worldCY = (WORLD_HEIGHT / 2f) * TILE_SIZE;
-        camera = new Camera(worldCX, worldCY, 1.0f);
+        camera = new Camera(worldCX, worldCY, 1.5f);
+    }
+
+    private void setupEntities() {
+        entityManager = new EntityManager();
+
+        // Spawn player at the island centre
+        float spawnX = (WORLD_WIDTH  / 2f) * TILE_SIZE + TILE_SIZE / 2f;
+        float spawnY = (WORLD_HEIGHT / 2f) * TILE_SIZE + TILE_SIZE / 2f;
+        player = new Player(spawnX, spawnY, grid, TILE_SIZE);
+        entityManager.add(player);
+
+        // Spawn the quest NPC one tile north of the player
+        float npcX = spawnX;
+        float npcY = spawnY - TILE_SIZE * 2;
+        questNPC = new Npc(npcX, npcY, "Fisherman",
+                new String[]{
+                        "Hey! You look new here.",
+                        "This island has been quiet since the storm.",
+                        "Bring me 10 wood and I'll tell you what I know."
+                }
+        );
+        entityManager.add(questNPC);
     }
 
 
     @Override
     public void update(double deltaTime) {
-        handleCameraInput((float) deltaTime);
+        entityManager.update(deltaTime);
+        handleCameraFollow();
+        handleCameraZoom();
+        handleInteraction();
     }
 
-    private void handleCameraInput(float dt) {
-        InputManager input  = inputManager;
-        MouseManager  mouse = mouseManager;
+    /**
+     * Camera smoothly follows the player.
+     */
+    private void handleCameraFollow() {
+        float targetX = player.getX();
+        float targetY = player.getY();
 
-        float speed = PAN_SPEED / camera.getZoom(); // pan speed feels consistent at any zoom
+        // Lerp for a soft follow feel — 0.1f is gentle, raise toward 1.0f for snappy
+        float lerp = 0.1f;
+        float currentX = camera.getX();
+        float currentY = camera.getY();
 
-        // WASD / arrow key panning
-        if (input.isKeyPressed(GLFW.GLFW_KEY_W) || input.isKeyPressed(GLFW.GLFW_KEY_UP)) {
-            camera.move(0,      -speed * dt);
-        }
-        if (input.isKeyPressed(GLFW.GLFW_KEY_S) || input.isKeyPressed(GLFW.GLFW_KEY_DOWN)) {
-            camera.move(0,       speed * dt);
-        }
-        if (input.isKeyPressed(GLFW.GLFW_KEY_A) || input.isKeyPressed(GLFW.GLFW_KEY_LEFT)) {
-            camera.move(-speed * dt, 0);
-        }
-        if (input.isKeyPressed(GLFW.GLFW_KEY_D) || input.isKeyPressed(GLFW.GLFW_KEY_RIGHT)) {
-            camera.move( speed * dt, 0);
-        }
+        camera.setPosition(
+                currentX + (targetX - currentX) * lerp,
+                currentY + (targetY - currentY) * lerp
+        );
+    }
 
-        // Scroll to zoom
+    private void handleCameraZoom() {
+        MouseManager mouse = MouseManager.getInstance();
         if (mouse.isScrollingUp()) {
             camera.adjustZoom( ZOOM_SPEED * camera.getZoom());
         }
         if (mouse.isScrollingDown()) {
             camera.adjustZoom(-ZOOM_SPEED * camera.getZoom());
+        }
+    }
+
+    private void handleInteraction() {
+        if (!inputManager.isKeyJustPressed(GLFW.GLFW_KEY_E)) {
+            return;
+        }
+
+        if (questNPC.isInRange(player.getX(), player.getY(), INTERACT_RADIUS)) {
+            activeDialogue = questNPC.interact();
         }
     }
 
@@ -155,11 +203,91 @@ public class PlayState extends GameState {
         int h = windowManager.getHeight();
 
         gridRenderer.renderer(camera, w, h);
+        renderEntitiesInWorldSpace(w, h);
+
+        // HUD (screen space — no camera transform)
+        renderHUD();
+    }
+
+    /**
+     * Push the same camera matrix the grid uses so entities sit correctly on tiles.
+     */
+    private void renderEntitiesInWorldSpace(int viewportW, int viewportH) {
+        GL11.glPushMatrix();
+
+        float zoom = camera.getZoom();
+        GL11.glTranslatef(viewportW / 2f, viewportH / 2f, 0);
+        GL11.glScalef(zoom, zoom, 1);
+        GL11.glTranslatef(-camera.getX(), -camera.getY(), 0);
+
+        entityManager.render();
+
+        GL11.glPopMatrix();
+    }
+
+    /**
+     * Dialogue box and any other HUD elements — rendered in screen space after the world.
+     */
+    private void renderHUD() {
+        if (activeDialogue != null) {
+            renderDialogueBox(activeDialogue);
+        }
+
+        // "Press E" hint when near NPC and not already talking
+        if (activeDialogue == null
+                && questNPC.isInRange(player.getX(), player.getY(), INTERACT_RADIUS)) {
+            renderInteractHint();
+        }
+    }
+
+    private void renderDialogueBox(String text) {
+        int w = windowManager.getWidth();
+        int h = windowManager.getHeight();
+
+        float boxH  = 80f;
+        float boxY  = h - boxH - 20f;
+        float boxX  = 40f;
+        float boxW  = w - 80f;
+
+        // Semi-transparent dark background
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glColor4f(0.05f, 0.05f, 0.1f, 0.85f);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glVertex2f(boxX,        boxY);
+        GL11.glVertex2f(boxX + boxW, boxY);
+        GL11.glVertex2f(boxX + boxW, boxY + boxH);
+        GL11.glVertex2f(boxX,        boxY + boxH);
+        GL11.glEnd();
+        GL11.glDisable(GL11.GL_BLEND);
+
+        // Border
+        GL11.glColor3f(0.6f, 0.5f, 0.2f);
+        GL11.glLineWidth(1.5f);
+        GL11.glBegin(GL11.GL_LINE_LOOP);
+        GL11.glVertex2f(boxX,        boxY);
+        GL11.glVertex2f(boxX + boxW, boxY);
+        GL11.glVertex2f(boxX + boxW, boxY + boxH);
+        GL11.glVertex2f(boxX,        boxY + boxH);
+        GL11.glEnd();
+
+        // "Press E to continue" hint in corner
+        // Text rendering is still placeholder blocks — replace when bitmap fonts land
+        // textRenderer.drawText(text, boxX + 16, boxY + 20, 1.2f, 1f, 1f, 0.9f);
+        // textRenderer.drawText("[E] continue", boxX + boxW - 120, boxY + boxH - 20, 1f, 0.6f, 0.6f, 0.6f);
+
+        // Clear dialogue so it doesn't persist — player must press E again for next line
+        activeDialogue = null;
+    }
+
+    private void renderInteractHint() {
+        // Small indicator above NPC in world space would be ideal,
+        // but a simple screen-space prompt works fine for now.
+        // Replace with textRenderer.drawText("[E]", ...) once fonts are ready.
     }
 
     @Override
     public void cleanup() {
-
+        entityManager.clear();
     }
-
 }

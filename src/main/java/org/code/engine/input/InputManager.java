@@ -1,5 +1,6 @@
 package org.code.engine.input;
 
+import org.code.utils.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
 
@@ -35,6 +36,9 @@ public class InputManager extends GLFWKeyCallback {
     public void invoke(long window, int key, int scancode, int action, int mods) {
         boolean isPressed = action != GLFW.GLFW_RELEASE;
         boolean wasPressed = pressedKeys.getOrDefault(key, false);
+        String keyName = GLFW.glfwGetKeyName(key, scancode);
+
+        Logger.debugThrottled(getClass(), "input-"+keyName, String.format("%s STATE: Pressed [%b] JustPressed[%b] JustReleased[%b]", key, isPressed, !wasPressed && isPressed, wasPressed && !isPressed));
 
         pressedKeys.put(key, isPressed);
 

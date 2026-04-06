@@ -1,5 +1,7 @@
 package org.code.engine.graphics.world;
 
+import java.util.Set;
+
 public enum TileType {
 
     GRASS("grass", 0.2f, 0.6f, 0.2f),
@@ -32,5 +34,13 @@ public enum TileType {
 
     public float getFallbackB() {
         return fallbackB;
+    }
+
+    public static Set<TileType> getLandTiles() {
+        return Set.of(GRASS, DIRT, SAND);
+    }
+
+    public static Set<TileType> getSeaTiles() {
+        return Set.of(WATER);
     }
 }

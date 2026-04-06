@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TextRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/ViewportManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIAnchor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.lwjgl/3.3.6+1/x64/glfw.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.lwjgl/3.3.6+1/x64/lwjgl.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.lwjgl/3.3.6+1/x64/lwjgl_opengl.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/EntityManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Npc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/MainMenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PROMT.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROMT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROADMAP.md" beforeDir="false" afterPath="$PROJECT_DIR$/ROADMAP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UILabel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +49,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -68,13 +72,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Download Sources.executor": "Run",
-    "Gradle.GameProject [:org.code.Main.main()].executor": "Run",
+    "Gradle.GameProject [:org.code.Main.main()].executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "configurable.group.appearance"
+    "settings.editor.selected.configurable": "configurable.group.build"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -113,5 +117,19 @@
       <updated>1745262371084</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
 </project>

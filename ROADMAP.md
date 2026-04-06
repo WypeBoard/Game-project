@@ -1,456 +1,259 @@
-# Game Development Roadmap & To-Do List
+# Isolated Island — Development Roadmap
 
-## ✅ COMPLETED - Phase 0: Foundation
+## 🎯 Goal
+Create a small, **playable** 2.5D pixel-art crafting and exploration game.
+Focus on finishing a vertical slice first. If it's fun → expand. If not → adjust early.
+
+---
+
+## 🧪 MVP (Vertical Slice)
+A minimal but complete playable loop:
+- Player can move around the island
+- Player can gather 1 resource (wood)
+- Player has a simple inventory
+- Player can craft 1 item (axe from wood)
+- Player can complete 1 quest from 1 NPC
+
+**This is the definition of done for v1. Everything else is bonus.**
+
+---
+
+## ✅ COMPLETED — Phase 0: Engine Foundation
 
 ### Core Engine
 - [x] Game loop with fixed timestep (60 FPS)
 - [x] Window management (GLFW + OpenGL)
 - [x] Input handling (keyboard + mouse)
 - [x] State management system (menu ↔ gameplay)
+- [x] Logger with throttle and change-detection helpers
 
 ### Graphics & Rendering
-- [x] Texture loading system (file-based)
-- [x] Procedural texture generation (for prototyping)
-- [x] Tile-based grid rendering
-- [x] Camera system (pan, zoom, screen-to-world conversion)
-- [x] View culling optimization
+- [x] Texture loading system (file-based PNG/JPG)
+- [x] Procedural texture generation (fallback for prototyping)
+- [x] Tile-based grid rendering with camera transform
+- [x] Camera system (pan with WASD, zoom with scroll)
+- [x] View culling (only renders visible tiles)
+- [x] ViewportManager for responsive coordinate helpers
 
 ### UI System
-- [x] Interface-based UI architecture
-- [x] UI bounds and mouse collision detection
-- [x] Button component with hover states
-- [x] Panel component (hierarchical UI)
-- [x] Label component (placeholder)
+- [x] Interface-based UI architecture (UIElement)
+- [x] Anchor system for responsive positioning (UIAnchor)
+- [x] UIBounds with mouse collision detection
+- [x] UIButton with hover states and onClick callback
+- [x] UIPanel (container with background)
+- [x] UILabel with alignment and optional background
+- [x] UIManager (root element list, reverse-order update)
 
 ### World System
-- [x] Grid data structure (2D tile array)
-- [x] Tile types with variations
-- [x] Basic terrain generation
+- [x] Grid data structure (64×64 tile array)
+- [x] TileType enum (GRASS, WATER, DIRT, STONE, SAND)
+- [x] Starting island carved from water (SAND border → DIRT → GRASS center)
+- [x] Camera starts centered on island
 
 **🎮 What You Can Do Now:**
-- Pan around a 100×100 tile world with WASD/arrows
-- Zoom with mouse wheel
-- Click tiles to change their type
-- See procedurally generated grass, water, dirt, stone, sand textures
-- Navigate between menu and gameplay states
+- Open the game to a main menu with Play/Settings/Exit
+- Enter gameplay and see a small island surrounded by water
+- Pan the camera with WASD/arrow keys
+- Zoom in/out with scroll wheel
 
 ---
 
-## 🔨 Phase 1: Basic Interactivity (1-2 weeks)
+## 🔨 Phase 1: Player & Movement
+**Goal: "I exist in the world and can move around"**
+**Estimated time: 1 week**
 
-### 1.1 Text Rendering System ⭐ **HIGH PRIORITY**
-**Why:** Without text, you can't display UI labels, numbers, or debug info
+### Tasks
+- [ ] Create `Player` class (position, size, speed)
+- [ ] Render player as a colored rectangle (no art needed yet)
+- [ ] Move player with WASD input
+- [ ] Camera follows player (smooth or snapped)
+- [ ] Basic tile collision — player cannot walk on WATER tiles
 
-**Tasks:**
-- [ ] Create bitmap font loader (load font atlas texture)
-- [ ] Create character UV mapping system
-- [ ] Implement string rendering method
-- [ ] Add text alignment options (left, center, right)
-- [ ] Create TextRenderer singleton
+### Files to Create
+- `game/entity/Player.java`
 
-**Files to Create:**
-- `BitmapFont.java`
-- `TextRenderer.java`
+### Files to Modify
+- `PlayState.java` — instantiate and update/render player
 
-**When Complete, You Can Add:**
-- Button labels that actually show text
-- Money/resource counters ("$50,000")
-- Tile information on hover ("Grass Tile")
-- Debug overlays (FPS, camera position, mouse coords)
-- Tutorial/help text
+### Done When
+Player appears on screen, moves with WASD, stops at water edges, and camera follows.
 
 ---
 
-### 1.2 Basic Entity System ⭐ **HIGH PRIORITY**
-**Why:** You need objects that exist on tiles but aren't tiles (buildings, vehicles)
+## 🌲 Phase 2: Resource Gathering
+**Goal: "I can interact with the world"**
+**Estimated time: 1 week**
 
-**Tasks:**
-- [ ] Create Entity base interface/class
-- [ ] Create EntityManager to track all entities
-- [ ] Implement entity-to-tile positioning
-- [ ] Add entity rendering layer (rendered after tiles)
-- [ ] Create simple Building entity type
-- [ ] Implement entity selection system
+### Tasks
+- [ ] Add TREE tile type (or place tree objects on GRASS tiles)
+- [ ] Detect when player is adjacent to a tree and presses interact key (E)
+- [ ] Remove tree / change tile on gather
+- [ ] Give player 1 wood item (hardcoded)
+- [ ] Simple visual feedback (tile changes color or disappears)
 
-**Files to Create:**
-- `Entity.java` (interface or abstract class)
-- `EntityManager.java`
-- `Building.java`
-- `EntityRenderer.java`
+### Notes
+- Keep it hardcoded: `if (interactedTile == TREE) { inventory.add(WOOD); }`
+- Do NOT build a generic resource system yet
 
-**When Complete, You Can Add:**
-- Place buildings on tiles
-- Click to select buildings
-- Simple structures (stations, depots, warehouses)
-- Visual distinction between tiles and entities
-- Foundation for vehicles later
+### Done When
+Player walks up to a tree, presses E, tree disappears, player has wood.
 
 ---
 
-### 1.3 UI Improvements
-**Why:** Current UI only shows colored rectangles
+## 🎒 Phase 3: Inventory
+**Goal: "I can hold items"**
+**Estimated time: 2–3 days**
 
-**Tasks:**
-- [ ] Integrate text rendering into UIButton
-- [ ] Create UILabel with actual text display
-- [ ] Add tooltip system (hover for info)
-- [ ] Create resource counter UI panel
-- [ ] Add basic build menu panel
+### Tasks
+- [ ] Create `Inventory` class — simple list or int array of item counts
+- [ ] Add/remove items by type
+- [ ] Render a minimal inventory bar on screen (e.g., "Wood: 3")
+- [ ] Wire up gathering from Phase 2 to actually store items
 
-**Files to Modify:**
-- `UIButton.java` (add text rendering)
-- `UILabel.java` (implement text display)
-- `PlayState.java` (add UI panels)
+### Files to Create
+- `game/inventory/Inventory.java`
+- `game/inventory/ItemType.java` (enum: WOOD, STONE, AXE, etc.)
 
-**When Complete, You Can Add:**
-- Readable UI elements
-- Resource displays
-- Tooltips explaining game mechanics
-- Build menus with labeled options
+### Notes
+- Display can just be a UILabel showing "Wood: X" — no fancy grid UI yet
+- Do NOT build a full inventory UI with slots and drag-drop
 
----
-
-## 🎯 Phase 2: Core Gameplay Loop (2-3 weeks)
-
-### 2.1 Economy System ⭐ **HIGH PRIORITY**
-**Why:** Core to any transport tycoon game
-
-**Tasks:**
-- [ ] Create Economy/Bank class to track money
-- [ ] Implement income/expense system
-- [ ] Add transaction logging
-- [ ] Create resource types enum (passengers, coal, goods, etc.)
-- [ ] Implement resource production/consumption
-- [ ] Add construction costs
-
-**Files to Create:**
-- `Economy.java`
-- `ResourceType.java`
-- `Transaction.java`
-
-**When Complete, You Can Add:**
-- Money management
-- Pay for building placement
-- Earn money from operations
-- Track profit/loss
-- Resource supply chains
+### Done When
+Player gathers wood, inventory count updates, number shows on screen.
 
 ---
 
-### 2.2 Building Placement System
-**Why:** Need to place stations, depots, and infrastructure
+## 🔨 Phase 4: Crafting
+**Goal: "I can create something new"**
+**Estimated time: 1 week**
 
-**Tasks:**
-- [ ] Create building catalog/registry
-- [ ] Implement placement preview (ghost building)
-- [ ] Add placement validation (can build here?)
-- [ ] Implement construction (pay money, place building)
-- [ ] Add building removal/demolition
-- [ ] Create different building types (station, depot, factory)
+### Tasks
+- [ ] Hardcode 1 recipe: 3 Wood → 1 Axe
+- [ ] Add craft action (press C or interact with a crafting tile)
+- [ ] Check if player has required items
+- [ ] Consume items, add result to inventory
+- [ ] Show feedback ("Crafted: Axe!")
 
-**Files to Create:**
-- `BuildingCatalog.java`
-- `BuildingPlacer.java`
-- `Station.java`
-- `Depot.java`
+### Files to Create
+- `game/crafting/CraftingSystem.java` (or just a method on PlayState initially)
 
-**When Complete, You Can Add:**
-- Click to enter build mode
-- Preview where building will go
-- Place stations on tiles
-- Remove buildings
-- Different building types with costs
+### Notes
+- Hardcode the recipe directly: `if (inventory.has(WOOD, 3)) { inventory.remove(WOOD, 3); inventory.add(AXE, 1); }`
+- Do NOT build a recipe registry or data-driven crafting system yet
+
+### Done When
+Player has enough wood, presses craft, axe appears in inventory.
 
 ---
 
-### 2.3 Pathfinding System ⭐ **HIGH PRIORITY**
-**Why:** Vehicles need to find routes
+## 🧑‍🌾 Phase 5: NPC & Quest
+**Goal: "I have a purpose"**
+**Estimated time: 1–2 weeks**
 
-**Tasks:**
-- [ ] Implement A* pathfinding algorithm
-- [ ] Create navigation graph from tiles
-- [ ] Add pathfinding with obstacles
-- [ ] Implement route caching
-- [ ] Create waypoint system
-- [ ] Add route visualization (draw path)
+### Tasks
+- [ ] Create `NPC` class — position, name, hardcoded dialogue lines
+- [ ] Render NPC as a distinct colored rectangle
+- [ ] Player can walk up and press E to interact
+- [ ] Show dialogue: "Bring me 10 wood and I'll open the northern path"
+- [ ] Hardcode quest state: NOT_STARTED → IN_PROGRESS → COMPLETE
+- [ ] On delivery: mark quest complete, unlock something (e.g., remove a STONE barrier tile)
 
-**Files to Create:**
-- `Pathfinder.java`
-- `PathNode.java`
-- `Route.java`
-- `Waypoint.java`
+### Files to Create
+- `game/entity/NPC.java`
+- `game/quest/Quest.java` (simple state enum + condition check)
 
-**When Complete, You Can Add:**
-- Calculate routes between two points
-- Visualize paths on the map
-- Vehicles that follow paths
-- Route planning UI
-- Obstacles that block paths
+### Notes
+- Dialogue can be a single UILabel or a simple text panel — no dialogue tree
+- One NPC, one quest, fully hardcoded
+- "Unlock something" can be as simple as changing a tile from STONE to GRASS
 
----
-
-### 2.4 Vehicle System
-**Why:** Core gameplay - moving things around
-
-**Tasks:**
-- [ ] Create Vehicle base class
-- [ ] Implement vehicle movement along paths
-- [ ] Add vehicle rendering with rotation
-- [ ] Create vehicle types (truck, train, ship)
-- [ ] Implement cargo capacity
-- [ ] Add vehicle purchase/sale
-
-**Files to Create:**
-- `Vehicle.java`
-- `Truck.java`
-- `Train.java`
-- `VehicleManager.java`
-
-**When Complete, You Can Add:**
-- Buy vehicles from depots
-- Assign routes to vehicles
-- Watch vehicles move around map
-- Load/unload cargo at stations
-- Different vehicle speeds/capacities
+### Done When
+Player talks to NPC, gets quest, collects 10 wood, returns, quest completes, area unlocks.
 
 ---
 
-## ⏱️ Phase 3: Time & Simulation (1-2 weeks)
+## 🌍 Phase 6: Progression (World Expansion)
+**Goal: "The world evolves as I play"**
+**Estimated time: 1 week**
 
-### 3.1 Game Time System
-**Why:** Things need to happen over time
+### Tasks
+- [ ] Add a locked area (blocked by tiles or a visual barrier)
+- [ ] Define an unlock condition (quest complete, item crafted, etc.)
+- [ ] Add a new resource or tile type in the unlocked area
+- [ ] Make the world feel slightly larger after progression
 
-**Tasks:**
-- [ ] Create GameClock class
-- [ ] Implement game speed controls (pause, 1x, 2x, 4x)
-- [ ] Add date/time tracking
-- [ ] Create scheduled events system
-- [ ] Add day/night cycle (optional visual)
+### Notes
+- This can be as simple as a row of STONE tiles that get replaced with GRASS when the quest is done
+- Do NOT build a generic area/zone system
 
-**Files to Create:**
-- `GameClock.java`
-- `ScheduledEvent.java`
-- `TimeManager.java`
-
-**When Complete, You Can Add:**
-- Pause/resume gameplay
-- Speed up/slow down time
-- Display current date
-- Schedule events (monthly costs, seasonal changes)
-- Time-based challenges
+### Done When
+Completing the quest opens a new part of the island with something new to find.
 
 ---
 
-### 3.2 Simulation Logic
-**Why:** Make the game world feel alive
+## 🎨 Phase 7: Assets (Light Config — Only If Needed)
+**Goal: "I can add content without changing code"**
+**Only tackle this if Phase 1–6 are complete and repetition is painful.**
 
-**Tasks:**
-- [ ] Implement resource generation at industries
-- [ ] Add resource consumption at cities
-- [ ] Create supply/demand system
-- [ ] Implement vehicle scheduling
-- [ ] Add maintenance costs over time
-- [ ] Create random events (breakdowns, weather)
+### Tasks
+- [ ] Simple JSON or properties file mapping tile/item IDs to texture file paths
+- [ ] Load texture assignments at startup instead of hardcoding strings
 
-**Files to Create:**
-- `Industry.java`
-- `City.java`
-- `SupplyChain.java`
-- `RandomEventManager.java`
-
-**When Complete, You Can Add:**
-- Industries produce goods over time
-- Cities consume goods
-- Vehicles earn money by delivering
-- Monthly expenses
-- Random events affecting gameplay
+### Notes
+- Do NOT build a full asset pipeline
+- Do NOT add hot-reloading, asset bundles, or a resource manager abstraction
 
 ---
 
-## 💾 Phase 4: Persistence (1 week)
+## 🧹 Phase 8: Refactor (Only If Needed)
+**Only refactor when the pain of NOT refactoring is bigger than the pain of refactoring.**
 
-### 4.1 Save/Load System
-**Why:** Players need to save progress
-
-**Tasks:**
-- [ ] Design save file format (JSON recommended)
-- [ ] Implement grid serialization
-- [ ] Implement entity serialization
-- [ ] Implement economy/state serialization
-- [ ] Add save game UI
-- [ ] Add load game UI
-- [ ] Create auto-save system
-
-**Files to Create:**
-- `SaveManager.java`
-- `SaveData.java`
-- `Serializer.java`
-
-**When Complete, You Can Add:**
-- Save game to disk
-- Load saved games
-- Multiple save slots
-- Auto-save every 5 minutes
-- Quick save/load hotkeys
+Candidates (only if repeated):
+- [ ] Extract quest logic into a reusable structure if you add a second quest
+- [ ] Extract NPC dialogue into a shared pattern if you add a second NPC
+- [ ] Clean up PlayState if it grows too large
 
 ---
 
-## 🎨 Phase 5: Polish & Content (2-4 weeks)
-
-### 5.1 Audio System
-**Why:** Adds immersion and feedback
-
-**Tasks:**
-- [ ] Implement audio manager (OpenAL)
-- [ ] Add background music system
-- [ ] Implement sound effects
-- [ ] Add volume controls
-- [ ] Create audio settings menu
-
-**Files to Create:**
-- `AudioManager.java`
-- `Sound.java`
-- `Music.java`
-
-**When Complete, You Can Add:**
-- Background music
-- Click sounds
-- Vehicle sounds
-- Ambient sounds
-- Volume sliders in settings
+## ⚠️ Anti-Scope Rules
+Avoid adding these unless the MVP is fully complete and they genuinely increase fun:
+- Large crafting trees or recipe systems
+- Procedural world generation
+- Complex dialogue or branching conversations
+- Advanced pathfinding or AI
+- Economy or trading systems
+- Save/load (nice to have, but not MVP)
+- Audio (nice to have, but not MVP)
+- Isometric rendering
 
 ---
 
-### 5.2 Advanced UI
-**Why:** Better user experience
+## ✅ Definition of Progress
+Progress **is**:
+- A playable feature that works in the game
+- Something the player can see or interact with
+- A step closer to the MVP loop
 
-**Tasks:**
-- [ ] Create scrollable lists
-- [ ] Implement dropdown menus
-- [ ] Add slider controls
-- [ ] Create tabbed interfaces
-- [ ] Implement drag-and-drop
-- [ ] Add keyboard shortcuts
-
-**Files to Create:**
-- `UIScrollPanel.java`
-- `UIDropdown.java`
-- `UISlider.java`
-- `UITabbedPanel.java`
-
-**When Complete, You Can Add:**
-- Vehicle lists you can scroll
-- Settings with sliders
-- Multi-page menus
-- Keyboard shortcuts for common actions
+Progress **is NOT**:
+- More abstraction layers
+- A new manager or system with no gameplay effect
+- Refactoring working code for cleanliness
 
 ---
 
-### 5.3 Isometric Rendering (Optional)
-**Why:** 2.5D perspective for better visual appeal
+## 📋 Immediate Priority Order
 
-**Tasks:**
-- [ ] Implement isometric coordinate transformation
-- [ ] Update GridRenderer for isometric
-- [ ] Create isometric tile art or generator
-- [ ] Adjust entity rendering for isometric
-- [ ] Update camera for isometric view
-- [ ] Fix rendering order (back-to-front)
-
-**Files to Modify:**
-- `GridRenderer.java`
-- `Camera.java`
-- `EntityRenderer.java`
-
-**When Complete, You Can Add:**
-- Isometric/2.5D visual style
-- Height-based rendering
-- More visually appealing perspective
-- Similar to classic transport tycoon games
+1. **Player movement** — exists in the world, moves with WASD
+2. **Camera follow** — camera tracks the player
+3. **Tile collision** — can't walk on water
+4. **Resource gathering** — chop a tree with E key
+5. **Inventory** — store and display wood count
+6. **Crafting** — turn wood into an axe
+7. **NPC + Quest** — talk to someone, get a goal, complete it
+8. **World unlock** — quest completion opens something new
 
 ---
 
-### 5.4 Content Expansion
-**Why:** More gameplay variety
-
-**Tasks:**
-- [ ] Add more tile types (forest, mountain, desert)
-- [ ] Create more building types
-- [ ] Add more vehicle types
-- [ ] Implement cargo types (passengers, mail, coal, goods, food, etc.)
-- [ ] Create scenarios/missions
-- [ ] Add achievements
-
-**When Complete, You Can Add:**
-- Varied terrain
-- More strategic options
-- Different cargo routes
-- Challenges and goals
-- Replay value
-
----
-
-## 🚀 Phase 6: Advanced Features (Optional, 3+ weeks)
-
-### 6.1 Advanced Pathfinding
-- [ ] Multi-vehicle pathfinding
-- [ ] Dynamic re-routing
-- [ ] Traffic management
-- [ ] One-way routes
-- [ ] Route optimization algorithms
-
-### 6.2 Advanced Economy
-- [ ] Stock market
-- [ ] Loans and interest
-- [ ] Competitor AI
-- [ ] Dynamic pricing
-- [ ] Industry chains
-
-### 6.3 Multiplayer (Advanced)
-- [ ] Network protocol
-- [ ] Server-client architecture
-- [ ] Synchronization
-- [ ] Multiplayer UI
-
----
-
-## 📋 Development Priority Summary
-
-### Week 1-2: Make it Interactive
-1. Text rendering ⭐
-2. Basic entity system ⭐
-3. UI improvements
-
-### Week 3-4: Core Gameplay
-4. Economy system ⭐
-5. Building placement
-6. Pathfinding ⭐
-
-### Week 5-6: Make it Move
-7. Vehicle system
-8. Game time system
-9. Simulation logic
-
-### Week 7: Make it Persistent
-10. Save/load system
-
-### Week 8+: Polish
-11. Audio system
-12. Advanced UI
-13. Content expansion
-14. Isometric rendering (optional)
-
----
-
-## 🎯 Minimum Viable Product (MVP) Checklist
-
-The absolute minimum for a playable prototype:
-
-- [ ] Text rendering (see numbers/labels)
-- [ ] Entity system (place buildings)
-- [ ] Economy system (track money)
-- [ ] Building placement (build stations)
-- [ ] Pathfinding (find routes)
-- [ ] Vehicle system (move vehicles)
-- [ ] Basic simulation (earn/spend money)
-- [ ] Save/load (don't lose progress)
+## 🧠 Guiding Rule
+**If a feature does not make the game more fun immediately → delay it.**
+Build the game, not the engine.
