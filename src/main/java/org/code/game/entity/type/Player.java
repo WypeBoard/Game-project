@@ -115,7 +115,7 @@ public final class Player implements Entity {
         int tileY = (int) (worldY / tileSize);
 
         return grid.getTile(tileX, tileY)
-                .map(TileType.getLandTiles()::contains)
+                .map(tile -> TileType.getLandTiles().contains(tile.getTileType()))
                 .orElse(false); // off-grid = not walkable
     }
 

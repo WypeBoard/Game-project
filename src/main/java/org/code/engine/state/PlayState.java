@@ -1,5 +1,6 @@
 package org.code.engine.state;
 
+import org.code.engine.graphics.TextRenderer;
 import org.code.engine.graphics.TileTextureManager;
 import org.code.engine.graphics.WindowManager;
 import org.code.engine.graphics.world.Camera;
@@ -41,7 +42,7 @@ public class PlayState extends GameState {
     private static WindowManager windowManager;
     private static InputManager inputManager;
     private static MouseManager mouseManager;
-
+    private static TextRenderer textRenderer;
     // Camera pan speed (world units per second)
     private static final float PAN_SPEED  = 300f;
     private static final float ZOOM_SPEED = 0.05f;
@@ -61,6 +62,8 @@ public class PlayState extends GameState {
         windowManager = WindowManager.getInstance();
         inputManager = InputManager.getInstance();
         mouseManager = MouseManager.getInstance();
+
+        textRenderer = TextRenderer.getInstance();
     }
 
     private void setupProjection() {
@@ -190,6 +193,12 @@ public class PlayState extends GameState {
             return;
         }
 
+        // If dialogue is already showing, dismiss it first
+        if (activeDialogue != null) {
+            activeDialogue = null;
+            return;
+        }
+
         if (questNPC.isInRange(player.getX(), player.getY(), INTERACT_RADIUS)) {
             activeDialogue = questNPC.interact();
         }
@@ -273,11 +282,8 @@ public class PlayState extends GameState {
 
         // "Press E to continue" hint in corner
         // Text rendering is still placeholder blocks — replace when bitmap fonts land
-        // textRenderer.drawText(text, boxX + 16, boxY + 20, 1.2f, 1f, 1f, 0.9f);
-        // textRenderer.drawText("[E] continue", boxX + boxW - 120, boxY + boxH - 20, 1f, 0.6f, 0.6f, 0.6f);
-
-        // Clear dialogue so it doesn't persist — player must press E again for next line
-        activeDialogue = null;
+        textRenderer.drawText(text, boxX + 16, boxY + 20, 1.2f, 1f, 1f, 0.9f);
+        textRenderer.drawText("[E] continue", boxX + boxW - 120, boxY + boxH - 20, 1f, 0.6f, 0.6f, 0.6f);
     }
 
     private void renderInteractHint() {

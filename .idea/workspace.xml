@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.lwjgl/3.3.6+1/x64/glfw.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.lwjgl/3.3.6+1/x64/lwjgl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.lwjgl/3.3.6+1/x64/lwjgl_opengl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/EntityManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Npc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PROMT.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROMT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROADMAP.md" beforeDir="false" afterPath="$PROJECT_DIR$/ROADMAP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/TileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +98,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Hoejholt\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="" />
