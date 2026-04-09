@@ -95,7 +95,7 @@ The game is about **feel, exploration, and progression**, not complexity or syst
 ✅ Texture loading from files (PNG/JPG) with procedural fallback
 ✅ Tile variations (multiple textures per tile type)
 ✅ View culling (only renders visible tiles)
-✅ Text rendering (placeholder blocks — readable positioning, not bitmap fonts yet)
+✅ Text rendering (FiraSans bitmap fonts)
 
 ### File Structure
 ```

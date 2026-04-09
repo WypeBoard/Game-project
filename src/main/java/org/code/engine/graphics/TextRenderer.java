@@ -1,11 +1,21 @@
 package org.code.engine.graphics;
 
+import org.code.utils.Logger;
 import org.lwjgl.opengl.GL11;
-import org.w3c.dom.Text;
 
+/**
+ * Singleton text renderer backed by a real bitmap font (STB TrueType).
+ * Drop-in replacement for the old placeholder version — same public API.
+ */
 public final class TextRenderer {
 
+    private static final String FONT_PATH  = "assets/fonts/FiraSans-Regular.ttf";
+    private static final float  FONT_SIZE  = 16f;
+
     private static TextRenderer instance;
+
+    private BitmapFont font;
+    private boolean initialized = false;
 
     private TextRenderer() {
         // Private constructor for singleton
@@ -16,6 +26,18 @@ public final class TextRenderer {
             instance = new TextRenderer();
         }
         return instance;
+    }
+
+    public void init() {
+        if (initialized) {
+            return;
+        }
+        try {
+            font = new BitmapFont(FONT_PATH, FONT_SIZE);
+            initialized = true;
+        } catch (Exception e) {
+            Logger.error(this.getClass(), "Failed to load font, falling back to nothing.", e);
+        }
     }
 
     /**
@@ -43,24 +65,36 @@ public final class TextRenderer {
      * @param b Blue (0-1)
      */
     public void drawText(String text, float x, float y, float scale, float r, float g, float b) {
-        if (text == null || text.isEmpty()) {
+        if (!initialized || text == null || text.isEmpty()) {
             return;
         }
 
-        float charWidth = 8 * scale;   // 8 pixels per character
-        float charHeight = 12 * scale; // 12 pixels tall
-        float spacing = 2 * scale;     // 2 pixel spacing between chars
-
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, font.getTextureId());
         GL11.glColor3f(r, g, b);
 
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            float charX = x + i * (charWidth + spacing);
+        // STB TrueType uses a Y-down baseline. We pass (x, y + lineHeight) so that
+        // "y" behaves as the top of the text, matching the old TextRenderer convention.
+        float baseline = y + font.getLineHeight() * scale;
 
-            // Draw each character as a filled rectangle (placeholder)
-            // In a real implementation, this would render from a texture atlas
-            drawCharacterPlaceholder(c, charX, y, charWidth, charHeight);
+        GL11.glPushMatrix();
+        GL11.glTranslatef(x, baseline, 0);
+        GL11.glScalef(scale, scale, 1);
+
+        GL11.glBegin(GL11.GL_QUADS);
+        float cursorX = 0;
+        for (int i = 0; i < text.length(); i++) {
+            cursorX = font.renderChar(text.charAt(i), cursorX, 0);
         }
+        GL11.glEnd();
+
+        GL11.glPopMatrix();
+
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
     }
 
     /**
@@ -110,8 +144,18 @@ public final class TextRenderer {
     /**
      * Calculate the height of rendered text
      */
+    public float getTextHeight(String text, float scale) {
+        if (!initialized || text == null || text.isEmpty()) {
+            return 0;
+        }
+        return font.measureWidth(text) * scale;
+    }
+
     public float getTextHeight(float scale) {
-        return 12 * scale;
+        if (!initialized) {
+            return 16f * scale; // safe fallback
+        }
+        return font.getLineHeight() * scale;
     }
 
     /**
@@ -170,5 +214,12 @@ public final class TextRenderer {
 
         // Draw text
         drawText(text, x, y, scale, textR, textG, textB);
+    }
+
+    public void cleanup() {
+        if (font != null) {
+            font.cleanup();
+        }
+        initialized = false;
     }
 }

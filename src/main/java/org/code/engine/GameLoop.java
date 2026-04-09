@@ -1,5 +1,6 @@
 package org.code.engine;
 
+import org.code.engine.graphics.TextRenderer;
 import org.code.engine.graphics.WindowManager;
 import org.code.engine.input.InputManager;
 import org.code.engine.input.MouseManager;
@@ -31,7 +32,6 @@ public class GameLoop {
         inputManager = InputManager.getInstance();
         mouseManager = MouseManager.getInstance();
         gameStateManager = GameStateManager.getInstance();
-        // Empty
     }
 
     public static GameLoop getInstance() {
@@ -56,6 +56,7 @@ public class GameLoop {
         System.out.println("Initializing game engine...");
 
         windowManager.init();
+        TextRenderer.getInstance().init();
 
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 

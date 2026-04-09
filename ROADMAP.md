@@ -34,7 +34,8 @@ A minimal but complete playable loop:
 - [x] Camera system (pan with WASD, zoom with scroll)
 - [x] View culling (only renders visible tiles)
 - [x] ViewportManager for responsive coordinate helpers
-
+- [x] TextRenderer loading ttf resource (FiraSans)
+- 
 ### UI System
 - [x] Interface-based UI architecture (UIElement)
 - [x] Anchor system for responsive positioning (UIAnchor)
@@ -63,11 +64,11 @@ A minimal but complete playable loop:
 **Estimated time: 1 week**
 
 ### Tasks
-- [ ] Create `Player` class (position, size, speed)
-- [ ] Render player as a colored rectangle (no art needed yet)
-- [ ] Move player with WASD input
-- [ ] Camera follows player (smooth or snapped)
-- [ ] Basic tile collision — player cannot walk on WATER tiles
+- [x] Create `Player` class (position, size, speed)
+- [x] Render player as a colored rectangle (no art needed yet)
+- [x] Move player with WASD input
+- [x] Camera follows player (smooth or snapped)
+- [x] Basic tile collision — player cannot walk on WATER tiles
 
 ### Files to Create
 - `game/entity/Player.java`
