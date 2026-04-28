@@ -5,12 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/BitmapFont.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/EngineContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/systems/inventory/Inventory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/systems/inventory/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/game/resources/ItemType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PROMT.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROMT.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROADMAP.md" beforeDir="false" afterPath="$PROJECT_DIR$/ROADMAP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TextRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/BitmapFont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/BitmapFont.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/TextRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TextureLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/TextureLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/TileTextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/TileTextureManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/ViewportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/ViewportManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/WindowManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/world/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/world/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/GridRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/world/GridRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/world/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/graphics/world/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/graphics/world/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/input/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/input/InputManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/input/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/input/MouseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/state/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/state/GameStateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/state/MainMenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/state/PlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIAnchor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UIAnchor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIBounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UIBounds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UIButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UIElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UILabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/engine/ui/UIPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/engine/ui/UIPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/game/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/game/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/game/entity/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/game/entity/EntityManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Npc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/game/entity/type/Npc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/game/entity/type/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/game/entity/type/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/code/utils/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/island/escape/utils/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +75,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -62,18 +95,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.GameProject [:org.code.Main.main()].executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.GameProject [:io.github.wypeboard.island.escape.Main.main()].executor": "Debug",
+    "Gradle.GameProject [:org.code.Main.main()].executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "configurable.group.build"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.code.engine.state" />
@@ -84,8 +118,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.code.Main" />
+    <configuration name="io.github.wypeboard.island.escape.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.wypeboard.island.escape.Main" />
       <module name="GameProject.main" />
       <extension name="coverage">
         <pattern>
@@ -99,7 +133,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.io.github.wypeboard.island.escape.Main" />
       </list>
     </recent_temporary>
   </component>

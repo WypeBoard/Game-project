@@ -106,7 +106,7 @@ Player walks up to a tree, presses E, tree disappears, player has wood.
 **Estimated time: 2–3 days**
 
 ### Tasks
-- [ ] Create `Inventory` class — simple list or int array of item counts
+- [x] Create `Inventory` class — simple list or int array of item counts
 - [ ] Add/remove items by type
 - [ ] Render a minimal inventory bar on screen (e.g., "Wood: 3")
 - [ ] Wire up gathering from Phase 2 to actually store items
