@@ -8,7 +8,9 @@ public enum TileType {
     WATER("water", 0.2f, 0.4f, 0.8f),
     DIRT("dirt", 0.6f, 0.4f, 0.2f),
     STONE("stone", 0.5f, 0.5f, 0.5f),
-    SAND("sand", 0.9f, 0.8f, 0.5f);
+    SAND("sand", 0.9f, 0.8f, 0.5f),
+    TREE("tree", 0.6f, 0.6f, 0.2f)
+    ;
 
     private final String textureName;
     private final float fallbackR, fallbackG, fallbackB;

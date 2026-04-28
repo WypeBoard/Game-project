@@ -103,6 +103,8 @@ public class PlayState extends GameState {
                     // Outer ring is sand, inner is dirt/grass
                     if (dx == ISLAND_RADIUS || dy == ISLAND_RADIUS) {
                         grid.setTile(x, y, TileType.SAND);
+                    } else if (dx >= ISLAND_RADIUS -1 && dy == ISLAND_RADIUS - 1) {
+                        grid.setTile(x, y, TileType.TREE);
                     } else if (dx >= ISLAND_RADIUS - 1 || dy >= ISLAND_RADIUS - 1) {
                         grid.setTile(x, y, TileType.DIRT);
                     } else {

@@ -6,6 +6,7 @@ import io.github.wypeboard.island.escape.engine.graphics.world.TileType;
 import io.github.wypeboard.island.escape.engine.input.InputManager;
 import io.github.wypeboard.island.escape.engine.systems.inventory.Inventory;
 import io.github.wypeboard.island.escape.engine.ui.UIBounds;
+import io.github.wypeboard.island.escape.game.entity.Direction;
 import io.github.wypeboard.island.escape.game.entity.Entity;
 import io.github.wypeboard.island.escape.game.resources.ItemType;
 import org.lwjgl.glfw.GLFW;
@@ -25,6 +26,7 @@ public final class Player implements Entity {
     private final Inventory inventory = new Inventory();
 
     private boolean active = true;
+    private Direction direction = Direction.NORTH;
 
     public Player(float startX, float startY, Grid grid, int tileSize) {
         this.x = startX;
@@ -42,17 +44,21 @@ public final class Player implements Entity {
         float dx = 0;
         float dy = 0;
 
-        if (input.isKeyPressed(GLFW.GLFW_KEY_W) || input.isKeyPressed(GLFW.GLFW_KEY_UP)) {
-            dy -= SPEED * dt;
-        }
-        if (input.isKeyPressed(GLFW.GLFW_KEY_S) || input.isKeyPressed(GLFW.GLFW_KEY_DOWN)) {
-            dy += SPEED * dt;
-        }
         if (input.isKeyPressed(GLFW.GLFW_KEY_A) || input.isKeyPressed(GLFW.GLFW_KEY_LEFT)) {
             dx -= SPEED * dt;
+            direction = Direction.WEST;
         }
         if (input.isKeyPressed(GLFW.GLFW_KEY_D) || input.isKeyPressed(GLFW.GLFW_KEY_RIGHT)) {
             dx += SPEED * dt;
+            direction = Direction.EAST;
+        }
+        if (input.isKeyPressed(GLFW.GLFW_KEY_W) || input.isKeyPressed(GLFW.GLFW_KEY_UP)) {
+            dy -= SPEED * dt;
+            direction = Direction.NORTH;
+        }
+        if (input.isKeyPressed(GLFW.GLFW_KEY_S) || input.isKeyPressed(GLFW.GLFW_KEY_DOWN)) {
+            dy += SPEED * dt;
+            direction = Direction.SOUTH;
         }
 
         // Try each axis independently so the player slides along walls
@@ -94,7 +100,12 @@ public final class Player implements Entity {
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
         GL11.glPointSize(4f);
         GL11.glBegin(GL11.GL_POINTS);
-        GL11.glVertex2f(x, y - half + 5f);
+        switch (direction) {
+            case WEST -> GL11.glVertex2f(x - half + 5f, y);
+            case EAST -> GL11.glVertex2f(x + half - 5f , y);
+            case NORTH -> GL11.glVertex2f(x, y - half + 5f);
+            case SOUTH -> GL11.glVertex2f(x, y + half - 5f);
+        }
         GL11.glEnd();
     }
 

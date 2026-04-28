@@ -86,7 +86,7 @@ Player appears on screen, moves with WASD, stops at water edges, and camera foll
 **Estimated time: 1 week**
 
 ### Tasks
-- [ ] Add TREE tile type (or place tree objects on GRASS tiles)
+- [x] Add TREE tile type (or place tree objects on GRASS tiles)
 - [ ] Detect when player is adjacent to a tree and presses interact key (E)
 - [ ] Remove tree / change tile on gather
 - [ ] Give player 1 wood item (hardcoded)
