@@ -1,4 +1,4 @@
-package io.github.wypeboard.island.escape.engine.state;
+package io.github.wypeboard.island.escape.game.states;
 
 import io.github.wypeboard.island.escape.engine.graphics.TextRenderer;
 import io.github.wypeboard.island.escape.engine.graphics.TileTextureManager;
@@ -6,13 +6,14 @@ import io.github.wypeboard.island.escape.engine.graphics.WindowManager;
 import io.github.wypeboard.island.escape.engine.graphics.world.Camera;
 import io.github.wypeboard.island.escape.engine.graphics.world.Grid;
 import io.github.wypeboard.island.escape.engine.graphics.world.GridRenderer;
-import io.github.wypeboard.island.escape.engine.graphics.world.TileType;
 import io.github.wypeboard.island.escape.engine.input.InputManager;
 import io.github.wypeboard.island.escape.engine.input.MouseManager;
+import io.github.wypeboard.island.escape.engine.state.GameState;
 import io.github.wypeboard.island.escape.game.entity.EntityManager;
 import io.github.wypeboard.island.escape.game.entity.type.Npc;
 import io.github.wypeboard.island.escape.game.entity.type.Player;
 import io.github.wypeboard.island.escape.game.resources.ItemType;
+import io.github.wypeboard.island.escape.game.world.IslandTileType;
 import io.github.wypeboard.island.escape.utils.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -86,7 +87,7 @@ public class PlayState extends GameState {
         // Fill everything with water first
         for (int x = 0; x < WORLD_WIDTH; x++) {
             for (int y = 0; y < WORLD_HEIGHT; y++) {
-                grid.setTile(x, y, TileType.WATER);
+                grid.setTile(x, y, IslandTileType.WATER);
             }
         }
 
@@ -102,13 +103,13 @@ public class PlayState extends GameState {
                 if (dx <= ISLAND_RADIUS && dy <= ISLAND_RADIUS) {
                     // Outer ring is sand, inner is dirt/grass
                     if (dx == ISLAND_RADIUS || dy == ISLAND_RADIUS) {
-                        grid.setTile(x, y, TileType.SAND);
+                        grid.setTile(x, y, IslandTileType.SAND);
                     } else if (dx >= ISLAND_RADIUS -1 && dy == ISLAND_RADIUS - 1) {
-                        grid.setTile(x, y, TileType.TREE);
+                        grid.setTile(x, y, IslandTileType.TREE);
                     } else if (dx >= ISLAND_RADIUS - 1 || dy >= ISLAND_RADIUS - 1) {
-                        grid.setTile(x, y, TileType.DIRT);
+                        grid.setTile(x, y, IslandTileType.DIRT);
                     } else {
-                        grid.setTile(x, y, TileType.GRASS);
+                        grid.setTile(x, y, IslandTileType.GRASS);
                     }
                 }
             }

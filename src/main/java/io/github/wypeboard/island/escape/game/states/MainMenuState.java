@@ -1,8 +1,10 @@
-package io.github.wypeboard.island.escape.engine.state;
+package io.github.wypeboard.island.escape.game.states;
 
 import io.github.wypeboard.island.escape.engine.GameLoop;
 import io.github.wypeboard.island.escape.engine.graphics.TextRenderer;
 import io.github.wypeboard.island.escape.engine.graphics.ViewportManager;
+import io.github.wypeboard.island.escape.engine.state.GameState;
+import io.github.wypeboard.island.escape.engine.state.GameStateManager;
 import io.github.wypeboard.island.escape.engine.ui.UIAnchor;
 import io.github.wypeboard.island.escape.engine.ui.UIButton;
 import io.github.wypeboard.island.escape.engine.ui.UIManager;

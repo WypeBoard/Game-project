@@ -5,7 +5,7 @@ import io.github.wypeboard.island.escape.engine.graphics.WindowManager;
 import io.github.wypeboard.island.escape.engine.input.InputManager;
 import io.github.wypeboard.island.escape.engine.input.MouseManager;
 import io.github.wypeboard.island.escape.engine.state.GameStateManager;
-import io.github.wypeboard.island.escape.engine.state.MainMenuState;
+import io.github.wypeboard.island.escape.game.states.MainMenuState;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
