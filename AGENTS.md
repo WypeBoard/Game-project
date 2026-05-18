@@ -93,3 +93,4 @@ Any and all code examples are to be presented to the user within the chat interf
 
 - checkstyle.xml
 - ArchUnit tests
+- docs/game-design.md
