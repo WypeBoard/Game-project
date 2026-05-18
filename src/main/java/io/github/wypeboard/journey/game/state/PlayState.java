@@ -6,7 +6,6 @@ import io.github.wypeboard.journey.engine.graphics.WindowManager;
 import io.github.wypeboard.journey.engine.graphics.world.Camera;
 import io.github.wypeboard.journey.engine.graphics.world.Grid;
 import io.github.wypeboard.journey.engine.graphics.world.GridRenderer;
-import io.github.wypeboard.journey.engine.graphics.world.TileType;
 import io.github.wypeboard.journey.engine.input.InputManager;
 import io.github.wypeboard.journey.engine.input.MouseManager;
 import io.github.wypeboard.journey.engine.state.GameState;
@@ -15,6 +14,7 @@ import io.github.wypeboard.journey.game.entity.EntityManager;
 import io.github.wypeboard.journey.game.entity.type.Npc;
 import io.github.wypeboard.journey.game.entity.type.Player;
 import io.github.wypeboard.journey.game.resources.ItemType;
+import io.github.wypeboard.journey.game.world.IslandTileType;
 import io.github.wypeboard.journey.utils.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -47,13 +47,12 @@ public class PlayState extends GameState {
     // Current dialogue line being shown, null when no dialogue active
     private String activeDialogue = null;
 
-
     private static WindowManager windowManager;
     private static InputManager inputManager;
     private static MouseManager mouseManager;
     private static TextRenderer textRenderer;
     // Camera pan speed (world units per second)
-    private static final float PAN_SPEED  = 300f;
+    private static final float PAN_SPEED = 300f;
     private static final float ZOOM_SPEED = 0.05f;
 
     @Override
@@ -94,12 +93,12 @@ public class PlayState extends GameState {
         // Fill everything with water first
         for (int x = 0; x < WORLD_WIDTH; x++) {
             for (int y = 0; y < WORLD_HEIGHT; y++) {
-                grid.setTile(x, y, TileType.WATER);
+                grid.setTile(x, y, IslandTileType.WATER);
             }
         }
 
         // Carve out a small starting island in the centre
-        int cx = WORLD_WIDTH  / 2;
+        int cx = WORLD_WIDTH / 2;
         int cy = WORLD_HEIGHT / 2;
 
         for (int x = cx - ISLAND_RADIUS; x <= cx + ISLAND_RADIUS; x++) {
@@ -110,13 +109,13 @@ public class PlayState extends GameState {
                 if (dx <= ISLAND_RADIUS && dy <= ISLAND_RADIUS) {
                     // Outer ring is sand, inner is dirt/grass
                     if (dx == ISLAND_RADIUS || dy == ISLAND_RADIUS) {
-                        grid.setTile(x, y, TileType.SAND);
-                    } else if (dx >= ISLAND_RADIUS -1 && dy == ISLAND_RADIUS - 1) {
-                        grid.setTile(x, y, TileType.TREE);
+                        grid.setTile(x, y, IslandTileType.SAND);
+                    } else if (dx >= ISLAND_RADIUS - 1 && dy == ISLAND_RADIUS - 1) {
+                        grid.setTile(x, y, IslandTileType.TREE);
                     } else if (dx >= ISLAND_RADIUS - 1 || dy >= ISLAND_RADIUS - 1) {
-                        grid.setTile(x, y, TileType.DIRT);
+                        grid.setTile(x, y, IslandTileType.DIRT);
                     } else {
-                        grid.setTile(x, y, TileType.GRASS);
+                        grid.setTile(x, y, IslandTileType.GRASS);
                     }
                 }
             }
@@ -134,7 +133,7 @@ public class PlayState extends GameState {
 
     private void setupCamera() {
         // Start camera centred on the island
-        float worldCX = (WORLD_WIDTH  / 2f) * TILE_SIZE;
+        float worldCX = (WORLD_WIDTH / 2f) * TILE_SIZE;
         float worldCY = (WORLD_HEIGHT / 2f) * TILE_SIZE;
         camera = new Camera(worldCX, worldCY, 1.5f);
     }
@@ -143,7 +142,7 @@ public class PlayState extends GameState {
         entityManager = new EntityManager();
 
         // Spawn player at the island centre
-        float spawnX = (WORLD_WIDTH  / 2f) * TILE_SIZE + TILE_SIZE / 2f;
+        float spawnX = (WORLD_WIDTH / 2f) * TILE_SIZE + TILE_SIZE / 2f;
         float spawnY = (WORLD_HEIGHT / 2f) * TILE_SIZE + TILE_SIZE / 2f;
         player = new Player(spawnX, spawnY, grid, TILE_SIZE);
         entityManager.add(player);
@@ -160,7 +159,6 @@ public class PlayState extends GameState {
         );
         entityManager.add(questNPC);
     }
-
 
     @Override
     public void update(double deltaTime) {
@@ -191,7 +189,7 @@ public class PlayState extends GameState {
     private void handleCameraZoom() {
         MouseManager mouse = MouseManager.getInstance();
         if (mouse.isScrollingUp()) {
-            camera.adjustZoom( ZOOM_SPEED * camera.getZoom());
+            camera.adjustZoom(ZOOM_SPEED * camera.getZoom());
         }
         if (mouse.isScrollingDown()) {
             camera.adjustZoom(-ZOOM_SPEED * camera.getZoom());
@@ -264,30 +262,29 @@ public class PlayState extends GameState {
     private void renderInventory() {
         TextRenderer textRenderer = TextRenderer.getInstance();
         textRenderer.drawText(
-                ItemType.WOOD.getName() +": " + player.getInventory().getCount(ItemType.WOOD),
+                ItemType.WOOD.getName() + ": " + player.getInventory().getCount(ItemType.WOOD),
                 20, 20, 1.0f, 1f, 1f, 1f
         );
     }
-
 
     private void renderDialogueBox(String text) {
         int w = windowManager.getWidth();
         int h = windowManager.getHeight();
 
-        float boxH  = 80f;
-        float boxY  = h - boxH - 20f;
-        float boxX  = 40f;
-        float boxW  = w - 80f;
+        float boxH = 80f;
+        float boxY = h - boxH - 20f;
+        float boxX = 40f;
+        float boxW = w - 80f;
 
         // Semi-transparent dark background
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glColor4f(0.05f, 0.05f, 0.1f, 0.85f);
         GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2f(boxX,        boxY);
+        GL11.glVertex2f(boxX, boxY);
         GL11.glVertex2f(boxX + boxW, boxY);
         GL11.glVertex2f(boxX + boxW, boxY + boxH);
-        GL11.glVertex2f(boxX,        boxY + boxH);
+        GL11.glVertex2f(boxX, boxY + boxH);
         GL11.glEnd();
         GL11.glDisable(GL11.GL_BLEND);
 
@@ -295,10 +292,10 @@ public class PlayState extends GameState {
         GL11.glColor3f(0.6f, 0.5f, 0.2f);
         GL11.glLineWidth(1.5f);
         GL11.glBegin(GL11.GL_LINE_LOOP);
-        GL11.glVertex2f(boxX,        boxY);
+        GL11.glVertex2f(boxX, boxY);
         GL11.glVertex2f(boxX + boxW, boxY);
         GL11.glVertex2f(boxX + boxW, boxY + boxH);
-        GL11.glVertex2f(boxX,        boxY + boxH);
+        GL11.glVertex2f(boxX, boxY + boxH);
         GL11.glEnd();
 
         // "Press E to continue" hint in corner

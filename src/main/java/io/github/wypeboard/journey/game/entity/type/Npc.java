@@ -76,7 +76,6 @@ public final class Npc implements Entity {
         return active;
     }
 
-
     /**
      * Advance through dialogue one line at a time.
      * Returns the current line to display, or null when dialogue is finished.

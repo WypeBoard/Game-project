@@ -32,12 +32,10 @@ public final class UILabel implements UIElement {
     private float bgB = 0.0f;
     private float bgAlpha = 0.7f;
 
-
     public UILabel(float x, float y, float width, float height, String text) {
         this.bounds = new UIBounds(x, y, width, height);
         this.text = text;
     }
-
 
     public UILabel(float x, float y, String text) {
         // Auto-size constructor - calculates width/height based on text

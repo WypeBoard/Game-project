@@ -1,7 +1,6 @@
 package io.github.wypeboard.journey.game.entity.type;
 
 import io.github.wypeboard.journey.engine.graphics.world.Grid;
-import io.github.wypeboard.journey.engine.graphics.world.TileType;
 import io.github.wypeboard.journey.engine.input.InputManager;
 import io.github.wypeboard.journey.engine.systems.inventory.Inventory;
 import io.github.wypeboard.journey.engine.ui.UIBounds;
@@ -33,7 +32,6 @@ public final class Player implements Entity {
         this.grid = grid;
         this.tileSize = tileSize;
     }
-
 
     @Override
     public void update(double deltaTime) {
@@ -101,7 +99,7 @@ public final class Player implements Entity {
         GL11.glBegin(GL11.GL_POINTS);
         switch (direction) {
             case WEST -> GL11.glVertex2f(x - half + 5f, y);
-            case EAST -> GL11.glVertex2f(x + half - 5f , y);
+            case EAST -> GL11.glVertex2f(x + half - 5f, y);
             case NORTH -> GL11.glVertex2f(x, y - half + 5f);
             case SOUTH -> GL11.glVertex2f(x, y + half - 5f);
         }

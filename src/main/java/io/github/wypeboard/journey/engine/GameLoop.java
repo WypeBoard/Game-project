@@ -21,8 +21,8 @@ public class GameLoop {
     private boolean running = false;
 
     // Frame rate control
-    private final double TARGET_FPS = 60.0;
-    private final double FRAME_TIME = 1.0 / TARGET_FPS;
+    private final double targetFps = 60.0;
+    private final double frameTime = 1.0 / targetFps;
 
     private GameLoop() {
         // Private constructor for singleton
@@ -75,9 +75,9 @@ public class GameLoop {
 
             accumulator += deltaTime;
 
-            while (accumulator >= FRAME_TIME) {
-                update(FRAME_TIME);
-                accumulator -= FRAME_TIME;
+            while (accumulator >= frameTime) {
+                update(frameTime);
+                accumulator -= frameTime;
             }
 
             render();

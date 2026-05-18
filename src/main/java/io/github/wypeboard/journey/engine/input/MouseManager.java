@@ -97,7 +97,7 @@ public class MouseManager {
         lastMouseY = mouseY;
 
         if (!justPressedButtons.isEmpty()) {
-            Logger.debugThrottled(getClass(),"mouse_just_pressed_clear",
+            Logger.debugThrottled(getClass(), "mouse_just_pressed_clear",
                     "Clearing justPressed buttons: " + justPressedButtons.keySet());
         }
         // Clear single-frame events

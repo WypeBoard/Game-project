@@ -8,11 +8,11 @@ public final class Logger {
     private static final boolean DEBUG_ENABLED = true;
 
     // Track last log time for each key to prevent spam
-    private static final Map<String, Long> lastLogTime = new HashMap<>();
+    private static final Map<String, Long> LAST_LOG_TIME = new HashMap<>();
     private static final long MIN_LOG_INTERVAL_MS = 1000; // Only log same message once per second
 
     // Track value changes to only log when something actually changes
-    private static final Map<String, String> lastLogValue = new HashMap<>();
+    private static final Map<String, String> LAST_LOG_VALUE = new HashMap<>();
 
     private Logger() {
         // Utility class
@@ -35,14 +35,16 @@ public final class Logger {
      * Log only once per second for the same key (prevents spam in game loop)
      */
     public static void debugThrottled(Class<?> clazz, String key, String message) {
-        if (!DEBUG_ENABLED) return;
+        if (!DEBUG_ENABLED) {
+            return;
+        }
 
         long now = System.currentTimeMillis();
-        Long lastTime = lastLogTime.get(clazz.getSimpleName() + key);
+        Long lastTime = LAST_LOG_TIME.get(clazz.getSimpleName() + key);
 
         if (lastTime == null || (now - lastTime) >= MIN_LOG_INTERVAL_MS) {
             System.out.print(printMessage(clazz, message));
-            lastLogTime.put(clazz.getSimpleName() + key, now);
+            LAST_LOG_TIME.put(clazz.getSimpleName() + key, now);
         }
     }
 
@@ -50,14 +52,16 @@ public final class Logger {
      * Log only when the value changes (perfect for tracking state)
      */
     public static void debugOnChange(Class<?> clazz, String key, Object value) {
-        if (!DEBUG_ENABLED) return;
+        if (!DEBUG_ENABLED) {
+            return;
+        }
 
         String valueStr = String.valueOf(value);
-        String lastValue = lastLogValue.get(clazz.getSimpleName() + key);
+        String lastValue = LAST_LOG_VALUE.get(clazz.getSimpleName() + key);
 
         if (!valueStr.equals(lastValue)) {
             System.out.print(printMessage(clazz, key + ": " + valueStr));
-            lastLogValue.put(clazz.getSimpleName() + key, valueStr);
+            LAST_LOG_VALUE.put(clazz.getSimpleName() + key, valueStr);
         }
     }
 
@@ -65,14 +69,16 @@ public final class Logger {
      * Log only when the value changes, with custom message
      */
     public static void debugOnChange(Class<?> clazz, String key, String message, Object value) {
-        if (!DEBUG_ENABLED) return;
+        if (!DEBUG_ENABLED) {
+            return;
+        }
 
         String valueStr = String.valueOf(value);
-        String lastValue = lastLogValue.get(clazz.getSimpleName() + key);
+        String lastValue = LAST_LOG_VALUE.get(clazz.getSimpleName() + key);
 
         if (!valueStr.equals(lastValue)) {
             System.out.print(printMessage(clazz, message + ": " + valueStr));
-            lastLogValue.put(clazz.getSimpleName() + key, valueStr);
+            LAST_LOG_VALUE.put(clazz.getSimpleName() + key, valueStr);
         }
     }
 
@@ -95,7 +101,7 @@ public final class Logger {
      * Clear all throttle/change tracking (useful when changing states)
      */
     public static void clearTracking() {
-        lastLogTime.clear();
-        lastLogValue.clear();
+        LAST_LOG_TIME.clear();
+        LAST_LOG_VALUE.clear();
     }
 }

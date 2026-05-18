@@ -18,6 +18,7 @@ public final class EntityManager {
     public void remove(Entity entity) {
         entities.remove(entity);
     }
+
     /**
      * Update all active entities, then remove any that became inactive this frame.
      */

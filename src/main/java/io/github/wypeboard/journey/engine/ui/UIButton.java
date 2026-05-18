@@ -20,7 +20,6 @@ public final class UIButton implements UIElement {
     private boolean enabled = true;
     private boolean hovered = false;
 
-
     private float normalR = 0.5f;
     private float normalG = 0.5f;
     private float normalB = 0.7f;
@@ -97,7 +96,9 @@ public final class UIButton implements UIElement {
         }
 
         // Choose color based on state
-        float r, g, b;
+        float r;
+        float g;
+        float b;
         if (!enabled) {
             r = disabledR;
             g = disabledG;

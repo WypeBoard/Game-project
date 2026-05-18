@@ -9,8 +9,8 @@ import org.lwjgl.opengl.GL11;
  */
 public final class TextRenderer {
 
-    private static final String FONT_PATH  = "assets/fonts/FiraSans-Regular.ttf";
-    private static final float  FONT_SIZE  = 16f;
+    private static final String FONT_PATH = "assets/fonts/FiraSans-Regular.ttf";
+    private static final float FONT_SIZE = 16f;
 
     private static TextRenderer instance;
 
@@ -44,9 +44,9 @@ public final class TextRenderer {
      * Draw text at screen position (left-aligned)
      * Note: This uses a fallback approach - drawing colored rectangles as character placeholders
      *
-     * @param text The text to render
-     * @param x Screen X position
-     * @param y Screen Y position
+     * @param text  The text to render
+     * @param x     Screen X position
+     * @param y     Screen Y position
      * @param scale Size multiplier (1.0 = normal)
      */
     public void drawText(String text, float x, float y, float scale) {
@@ -56,13 +56,13 @@ public final class TextRenderer {
     /**
      * Draw text with custom color
      *
-     * @param text The text to render
-     * @param x Screen X position
-     * @param y Screen Y position
+     * @param text  The text to render
+     * @param x     Screen X position
+     * @param y     Screen Y position
      * @param scale Size multiplier
-     * @param r Red (0-1)
-     * @param g Green (0-1)
-     * @param b Blue (0-1)
+     * @param r     Red (0-1)
+     * @param g     Green (0-1)
+     * @param b     Blue (0-1)
      */
     public void drawText(String text, float x, float y, float scale, float r, float g, float b) {
         if (!initialized || text == null || text.isEmpty()) {

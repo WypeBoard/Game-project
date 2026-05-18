@@ -38,7 +38,7 @@ public class InputManager extends GLFWKeyCallback {
         boolean wasPressed = pressedKeys.getOrDefault(key, false);
         String keyName = GLFW.glfwGetKeyName(key, scancode);
 
-        Logger.debugThrottled(getClass(), "input-"+keyName, String.format("%s STATE: Pressed [%b] JustPressed[%b] JustReleased[%b]", key, isPressed, !wasPressed && isPressed, wasPressed && !isPressed));
+        Logger.debugThrottled(getClass(), "input-" + keyName, String.format("%s STATE: Pressed [%b] JustPressed[%b] JustReleased[%b]", key, isPressed, !wasPressed && isPressed, wasPressed && !isPressed));
 
         pressedKeys.put(key, isPressed);
 

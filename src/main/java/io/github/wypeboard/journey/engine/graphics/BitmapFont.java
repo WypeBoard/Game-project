@@ -19,7 +19,7 @@ import java.nio.FloatBuffer;
 public final class BitmapFont {
 
     // Atlas dimensions — 512x512 is plenty for ASCII at most sizes
-    private static final int ATLAS_WIDTH  = 512;
+    private static final int ATLAS_WIDTH = 512;
     private static final int ATLAS_HEIGHT = 512;
 
     // ASCII range we care about: space (32) through tilde (126)
@@ -31,8 +31,8 @@ public final class BitmapFont {
     private final float fontSize;
 
     /**
-     * @param fontPath  path to .ttf file, e.g. "assets/fonts/font.ttf"
-     * @param fontSize  point size to bake at, e.g. 16f
+     * @param fontPath path to .ttf file, e.g. "assets/fonts/font.ttf"
+     * @param fontSize point size to bake at, e.g. 16f
      */
     public BitmapFont(String fontPath, float fontSize) {
         this.fontSize = fontSize;
@@ -86,10 +86,14 @@ public final class BitmapFont {
             float u1 = (float) bakedChar.x1() / ATLAS_WIDTH;
             float v1 = (float) bakedChar.y1() / ATLAS_HEIGHT;
 
-            GL11.glTexCoord2f(u0, v0); GL11.glVertex2f(x0, y0);
-            GL11.glTexCoord2f(u1, v0); GL11.glVertex2f(x1, y0);
-            GL11.glTexCoord2f(u1, v1); GL11.glVertex2f(x1, y1);
-            GL11.glTexCoord2f(u0, v1); GL11.glVertex2f(x0, y1);
+            GL11.glTexCoord2f(u0, v0);
+            GL11.glVertex2f(x0, y0);
+            GL11.glTexCoord2f(u1, v0);
+            GL11.glVertex2f(x1, y0);
+            GL11.glTexCoord2f(u1, v1);
+            GL11.glVertex2f(x1, y1);
+            GL11.glTexCoord2f(u0, v1);
+            GL11.glVertex2f(x0, y1);
 
             return x + bakedChar.xadvance();
         }

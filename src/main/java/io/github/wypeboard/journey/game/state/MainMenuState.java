@@ -109,7 +109,6 @@ public class MainMenuState extends GameState {
                 0.8f, 0.8f, 0.8f
         );
 
-
         uiManager.render();
     }
 

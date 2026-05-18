@@ -27,6 +27,4 @@ public interface Item {
     default int stackSize() {
         return 1000;
     }
-
-    ;
 }

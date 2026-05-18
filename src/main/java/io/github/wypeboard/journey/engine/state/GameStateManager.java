@@ -4,7 +4,7 @@ public class GameStateManager {
 
     private static GameStateManager instance;
 
-    private GameState currentState ;
+    private GameState currentState;
     private GameState nextState;
 
     private GameStateManager() {
