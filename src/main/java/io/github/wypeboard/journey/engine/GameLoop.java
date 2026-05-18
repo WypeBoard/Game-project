@@ -5,7 +5,7 @@ import io.github.wypeboard.journey.engine.graphics.WindowManager;
 import io.github.wypeboard.journey.engine.input.InputManager;
 import io.github.wypeboard.journey.engine.input.MouseManager;
 import io.github.wypeboard.journey.engine.state.GameState;
-import io.github.wypeboard.journey.game.states.MainMenuState;
+import io.github.wypeboard.journey.engine.state.GameStateManager;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 

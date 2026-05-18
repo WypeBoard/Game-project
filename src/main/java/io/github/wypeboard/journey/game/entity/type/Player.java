@@ -7,6 +7,7 @@ import io.github.wypeboard.journey.engine.systems.inventory.Inventory;
 import io.github.wypeboard.journey.engine.ui.UIBounds;
 import io.github.wypeboard.journey.game.entity.Direction;
 import io.github.wypeboard.journey.game.entity.Entity;
+import io.github.wypeboard.journey.game.world.IslandTileRules;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 

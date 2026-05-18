@@ -1,8 +1,6 @@
-package io.github.wypeboard.island.escape.game.world;
+package io.github.wypeboard.journey.game.world;
 
-import io.github.wypeboard.island.escape.engine.graphics.world.TileType;
-
-import java.util.Set;
+import io.github.wypeboard.journey.engine.graphics.world.TileType;
 
 public enum IslandTileType implements TileType {
     GRASS("grass", 0.2f, 0.6f, 0.2f, true),
@@ -10,8 +8,7 @@ public enum IslandTileType implements TileType {
     DIRT("dirt", 0.6f, 0.4f, 0.2f, true),
     STONE("stone", 0.5f, 0.5f, 0.5f),
     SAND("sand", 0.9f, 0.8f, 0.5f, true),
-    TREE("tree", 0.6f, 0.6f, 0.2f)
-    ;
+    TREE("tree", 0.6f, 0.6f, 0.2f);
 
     private final String textureName;
     private final float fallbackR;

@@ -1,6 +1,6 @@
-package io.github.wypeboard.island.escape.game.world;
+package io.github.wypeboard.journey.game.world;
 
-import io.github.wypeboard.island.escape.engine.graphics.world.Tile;
+import io.github.wypeboard.journey.engine.graphics.world.Tile;
 
 public class IslandTileRules {
 
