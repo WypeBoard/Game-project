@@ -6,12 +6,14 @@ public final class Tile {
     private final int gridY;
     private TileType tileType;
     private int textureVariation;
+    private TileVisibility tileVisibility;
 
     public Tile(int gridX, int gridY, TileType tileType) {
         this.gridX = gridX;
         this.gridY = gridY;
         this.tileType = tileType;
         this.textureVariation = 0;
+        this.tileVisibility = TileVisibility.HIDDEN;
     }
 
     public int getGridX() {
@@ -36,5 +38,13 @@ public final class Tile {
 
     public void setTextureVariation(int textureVariation) {
         this.textureVariation = textureVariation;
+    }
+
+    public TileVisibility getTileVisibility() {
+        return tileVisibility;
+    }
+
+    public void setTileVisibility(TileVisibility tileVisibility) {
+        this.tileVisibility = tileVisibility;
     }
 }

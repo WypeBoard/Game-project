@@ -2,7 +2,7 @@ package io.github.wypeboard.journey.game.world;
 
 import io.github.wypeboard.journey.engine.graphics.world.TileType;
 
-public enum IslandTileType implements TileType {
+public enum BiomeTileType implements TileType {
     GRASS("grass", 0.2f, 0.6f, 0.2f, true),
     WATER("water", 0.2f, 0.4f, 0.8f),
     DIRT("dirt", 0.6f, 0.4f, 0.2f, true),
@@ -16,7 +16,7 @@ public enum IslandTileType implements TileType {
     private final float fallbackB;
     private boolean walkable;
 
-    IslandTileType(String textureName, float fallbackR, float fallbackG, float fallbackB) {
+    BiomeTileType(String textureName, float fallbackR, float fallbackG, float fallbackB) {
         this.textureName = textureName;
         this.fallbackR = fallbackR;
         this.fallbackG = fallbackG;
@@ -24,7 +24,7 @@ public enum IslandTileType implements TileType {
         this.walkable = false;
     }
 
-    IslandTileType(String textureName, float fallbackR, float fallbackG, float fallbackB, boolean walkable) {
+    BiomeTileType(String textureName, float fallbackR, float fallbackG, float fallbackB, boolean walkable) {
         this.textureName = textureName;
         this.fallbackR = fallbackR;
         this.fallbackG = fallbackG;

@@ -6,7 +6,7 @@ import io.github.wypeboard.journey.engine.systems.inventory.Inventory;
 import io.github.wypeboard.journey.engine.ui.UIBounds;
 import io.github.wypeboard.journey.game.entity.Direction;
 import io.github.wypeboard.journey.game.entity.Entity;
-import io.github.wypeboard.journey.game.world.IslandTileRules;
+import io.github.wypeboard.journey.game.world.BiomeTileRules;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
@@ -131,7 +131,7 @@ public final class Player implements Entity {
         int tileY = (int) (worldY / tileSize);
 
         return grid.getTile(tileX, tileY)
-                .map(IslandTileRules::isTileWalkable)
+                .map(BiomeTileRules::isTileWalkable)
                 .orElse(false); // off-grid = not walkable
     }
 

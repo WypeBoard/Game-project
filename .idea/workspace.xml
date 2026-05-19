@@ -5,24 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/BitmapFont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/BitmapFont.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/TextRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/input/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/input/InputManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/input/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/input/MouseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/state/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/state/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/state/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/state/GameStateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/systems/inventory/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/systems/inventory/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/ui/UIButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/ui/UIButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/ui/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/ui/UILabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/EntityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/type/Npc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/type/Npc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/TileVisibility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/TileTextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/TileTextureManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/type/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/type/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/resources/ItemType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/resources/ItemType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/MainMenuState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/IslandTileRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/IslandTileRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/utils/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/utils/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/IslandTileRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/BiomeTileRules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/IslandTileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/BiomeTileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/utils/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +47,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -74,23 +67,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build GameProject.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.EngineSeparationTest.executor": "Debug",
-    "Gradle.EngineSeperationTest.executor": "Run",
-    "Gradle.GameProject [:io.github.wypeboard.island.escape.Main.main()].executor": "Debug",
-    "Gradle.GameProject [:org.code.Main.main()].executor": "Debug",
-    "JUnit.EngineSeparationTest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build GameProject.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EngineSeparationTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.EngineSeperationTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GameProject [:io.github.wypeboard.island.escape.Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.GameProject [:org.code.Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.EngineSeparationTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.code.engine.state" />

@@ -4,7 +4,7 @@ import io.github.wypeboard.journey.engine.graphics.world.TileType;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -18,14 +18,11 @@ public final class TileTextureManager {
     private final Random random;
     private final String texturesPath;
 
-    public TileTextureManager(String texturesPath) {
+    public TileTextureManager(String texturesPath, List<TileType> tileTypes) {
         this.texturesPath = texturesPath;
-        this.tileTextures = new EnumMap<>(TileType.class);
+        this.tileTextures = new HashMap<>();
         this.random = new Random();
-
-        for (TileType tileType : TileType.values()) {
-            tileTextures.put(tileType, new ArrayList<>());
-        }
+        tileTypes.forEach(tile -> this.tileTextures.put(tile, new ArrayList<>()));
     }
 
     public void loadTileTextures() {
@@ -45,7 +42,7 @@ public final class TileTextureManager {
             return;
         }
 
-        for (TileType tileType : TileType.values()) {
+        for (TileType tileType : tileTextures.keySet()) {
             loadVariationsForType(tileType, files);
         }
 

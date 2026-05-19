@@ -9,6 +9,7 @@ import io.github.wypeboard.journey.engine.ui.UIAnchor;
 import io.github.wypeboard.journey.engine.ui.UIButton;
 import io.github.wypeboard.journey.engine.ui.UIManager;
 import io.github.wypeboard.journey.engine.ui.UIPanel;
+import io.github.wypeboard.journey.utils.Constants;
 import org.lwjgl.opengl.GL11;
 
 public class MainMenuState extends GameState {
@@ -94,7 +95,7 @@ public class MainMenuState extends GameState {
         TextRenderer textRenderer = TextRenderer.getInstance();
 
         textRenderer.drawTextCentered(
-                "TRANSPORT TYCOON",
+                Constants.TITLE,
                 viewport.getCenterX(),
                 viewport.getCenterY() - 150,
                 2.5f,
