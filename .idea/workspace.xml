@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/todo.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/scenario/Scenario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/CameraSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/InteractionSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/scenario/ScenarioId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/scenario/ScenarioRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/WorldCreationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/WorldCreationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/scenario/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/scenario/Scenario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +42,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
