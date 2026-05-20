@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e47733-b0e0-4dba-aac6-0691b7c9279d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/TileVisibility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/todo.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/scenario/Scenario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/CameraSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/InteractionSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/TileTextureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/TileTextureManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/engine/graphics/world/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/type/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/entity/type/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/MainMenuState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/state/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/IslandTileRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/BiomeTileRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/IslandTileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/world/BiomeTileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/WorldCreationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/wypeboard/journey/game/systems/WorldCreationSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +44,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

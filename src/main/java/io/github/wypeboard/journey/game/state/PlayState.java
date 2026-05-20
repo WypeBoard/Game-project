@@ -14,6 +14,10 @@ import io.github.wypeboard.journey.game.entity.EntityManager;
 import io.github.wypeboard.journey.game.entity.type.Npc;
 import io.github.wypeboard.journey.game.entity.type.Player;
 import io.github.wypeboard.journey.game.resources.ItemType;
+import io.github.wypeboard.journey.game.systems.CameraSystem;
+import io.github.wypeboard.journey.game.systems.HUDSystem;
+import io.github.wypeboard.journey.game.systems.InteractionSystem;
+import io.github.wypeboard.journey.game.systems.WorldCreationSystem;
 import io.github.wypeboard.journey.game.world.BiomeTileType;
 import io.github.wypeboard.journey.utils.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -61,7 +65,7 @@ public class PlayState extends GameState {
 
         initManagers();
         setupProjection();
-        buildWorld();
+        initializeSubsystems();
         setupCamera();
         setupEntities();
     }
@@ -85,6 +89,16 @@ public class PlayState extends GameState {
         GL11.glLoadIdentity();
 
         GL11.glClearColor(0.05f, 0.05f, 0.1f, 1.0f);
+    }
+
+    private void initializeSubsystems() {
+        // Order matters! First in - First processed
+        subSystems.add(new WorldCreationSystem());
+        subSystems.add(new HUDSystem());
+        subSystems.add(new CameraSystem());
+        subSystems.add(new InteractionSystem());
+
+        subSystems.forEach(PlayStateSystem::init);
     }
 
     private void buildWorld() {
@@ -163,6 +177,7 @@ public class PlayState extends GameState {
     @Override
     public void update(double deltaTime) {
         entityManager.update(deltaTime);
+        subSystems.forEach(stateSystem -> stateSystem.update(deltaTime));
         handleCameraFollow();
         handleCameraZoom();
         handleInteraction();
@@ -219,6 +234,7 @@ public class PlayState extends GameState {
         int w = windowManager.getWidth();
         int h = windowManager.getHeight();
 
+        subSystems.forEach(PlayStateSystem::render);
         gridRenderer.renderer(camera, w, h);
         renderEntitiesInWorldSpace(w, h);
 
@@ -313,5 +329,6 @@ public class PlayState extends GameState {
     @Override
     public void cleanup() {
         entityManager.clear();
+        subSystems.forEach(PlayStateSystem::cleanup);
     }
 }
