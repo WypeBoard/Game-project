@@ -14,11 +14,17 @@ import io.github.wypeboard.journey.game.entity.EntityManager;
 import io.github.wypeboard.journey.game.entity.type.Npc;
 import io.github.wypeboard.journey.game.entity.type.Player;
 import io.github.wypeboard.journey.game.resources.ItemType;
+import io.github.wypeboard.journey.game.scenario.Scenario;
+import io.github.wypeboard.journey.game.scenario.ScenarioContext;
+import io.github.wypeboard.journey.game.scenario.ScenarioId;
+import io.github.wypeboard.journey.game.scenario.ScenarioLoader;
+import io.github.wypeboard.journey.game.scenario.ScenarioRegistry;
 import io.github.wypeboard.journey.game.systems.CameraSystem;
 import io.github.wypeboard.journey.game.systems.HUDSystem;
 import io.github.wypeboard.journey.game.systems.InteractionSystem;
 import io.github.wypeboard.journey.game.systems.WorldCreationSystem;
 import io.github.wypeboard.journey.game.world.BiomeTileType;
+import io.github.wypeboard.journey.game.world.LoadedWorld;
 import io.github.wypeboard.journey.utils.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
@@ -92,11 +98,25 @@ public class PlayState extends GameState {
     }
 
     private void initializeSubsystems() {
+
+        Scenario scenario = ScenarioRegistry.get(ScenarioId.TUTORIAL);
+        LoadedWorld world = ScenarioLoader.load(scenario);
+
+        Camera camera = new Camera(world.getSpawnX(), world.getSpawnY(), 1.5f); // Magic floating evil pointer??
+        ScenarioContext context = new ScenarioContext(world, camera, scenario);
+
+        Player player = new Player(world.getSpawnX(), world.getSpawnY(), world.getGrid(), world.getTileSize());
+        context.setPlayer(player);
+
+        entityManager = new EntityManager();
+        entityManager.add(player);
+        world.getEntities().forEach(entityManager::add);
+
         // Order matters! First in - First processed
-        subSystems.add(new WorldCreationSystem());
-        subSystems.add(new HUDSystem());
-        subSystems.add(new CameraSystem());
-        subSystems.add(new InteractionSystem());
+        subSystems.add(new WorldCreationSystem(context));
+        subSystems.add(new HUDSystem(context));
+        subSystems.add(new CameraSystem(context));
+        subSystems.add(new InteractionSystem(context));
 
         subSystems.forEach(PlayStateSystem::init);
     }

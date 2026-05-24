@@ -11,4 +11,6 @@ public interface TileType {
     float getFallbackG();
 
     float getFallbackB();
+
+    boolean isWalkable();
 }

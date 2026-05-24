@@ -14,7 +14,7 @@ public enum BiomeTileType implements TileType {
     private final float fallbackR;
     private final float fallbackG;
     private final float fallbackB;
-    private boolean walkable;
+    private final boolean walkable;
 
     BiomeTileType(String textureName, float fallbackR, float fallbackG, float fallbackB) {
         this.textureName = textureName;
@@ -57,6 +57,7 @@ public enum BiomeTileType implements TileType {
         return fallbackB;
     }
 
+    @Override
     public boolean isWalkable() {
         return walkable;
     }
